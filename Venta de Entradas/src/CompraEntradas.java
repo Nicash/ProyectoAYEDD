@@ -77,7 +77,7 @@ public class CompraEntradas {
         System.out.println("");
         System.out.println("");
 
-        //MOSTRAMOS INFORMACION PARA LA EMPRESA
+        //MOSTRAMOS INFORMACION PARA LA EMPRESA y la Imprimimos
 
         System.out.println("\u001B[36m--------------------------------------------------------------------------");
         System.out.println("---------------------- INFORMACION VENTAS  -------------------------------");
