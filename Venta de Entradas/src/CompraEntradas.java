@@ -23,68 +23,65 @@ public class CompraEntradas {
         // ARRANCAMOS CON LA SECUENCIA DEL PROGRAMA
 
         //Saludamos y damos la información del Concierto
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("Bienvenido al portal de compra de entradas para el recital de " + "\033[31m" + "Los Garcia" + "\033[0m");
-        System.out.println("       Fecha: " + "\033[34m" + fechaConcierto + "\033[0m" +" - Hora: " + "\033[34m" + horaConcierto + "\033[0m" + " - Lugar: " + "\033[34m" + lugarConcierto  + "\033[0m" );
-        System.out.println("");
-        //Mostramos la cantidad de entradas disponibles
-        System.out.println("                    Cantidad de entradas disponibles: " + "\033[32m" + cantidadEntradasDisponibles + "\033[0m");
-        System.out.println("                         Precio de las entradas: " + "\u001B[35m$" + precioEntrada + "\033[0m");
-        System.out.println("");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("");
+        
+        System.out.println("Bienvenido al portal de compra de entradas para el recital de 'Los Garcia'"); //Bienvenida
+
+        System.out.println("Fecha: " + fechaConcierto +" - Hora: " + horaConcierto + " - Lugar: " + lugarConcierto ); //Datos: Fecha, Hora y Lugar
+
+        System.out.println("Cantidad de entradas disponibles: " + cantidadEntradasDisponibles); //Entradas disponibles
+
+        System.out.println("Precio de las entradas: " + precioEntrada); //Precio de la entrada
+
+        System.out.println(""); //Cadena vacia para dejar un espacio
+        
         //Creamos la herramienta que nos va a servir para leer los valores ingresados por el usuario
         Scanner lector = new Scanner(System.in);
 
         //Preguntamos la cantidad de entradas a comprar. El usuario debe ingresar la cantidad.
-        System.out.print("+ Introduzca la cantidad de entradas a comprar: ");
+
+        System.out.print("- Introduzca la cantidad de entradas a comprar: ");
         cantidadEntradasComprar = lector.nextInt();
+        lector.nextLine(); //salto de linea para q no me de error luego al leer el String
+
+        //Hacemos los calculos necesarios en base a la cantidad de entradas que eligió el usuario
         cantidadEntradasDisponibles = cantidadEntradasDisponibles - cantidadEntradasComprar; //restamos las compradas al total
         cantidadEntradasVendidas = cantidadEntradasVendidas + cantidadEntradasComprar; //sumamos entradas vendidas a la variable que las contabiliza
-        cantidadDineroRecaudado = cantidadDineroRecaudado + (cantidadEntradasComprar * precioEntrada);
-        lector.nextLine(); //salto de linea para q no me de error
+        cantidadDineroRecaudado = cantidadDineroRecaudado + (cantidadEntradasComprar * precioEntrada); //calculamos el dinero juntado con esta compra
 
         //Preguntamos el email para enviar el comprobante
-        System.out.print("+ Introduzca un email para enviar el comprobante de compra: ");
+        System.out.print("- Introduzca un email para enviar el comprobante de compra: ");
         emailComprador = lector.nextLine();
 
         //Preguntamos el celular para enviar el comprobante
-        System.out.print("+ Introduzca un numero de celular para enviar el comprobante de compra: ");
+        System.out.print("- Introduzca un numero de celular para enviar el comprobante de compra: ");
         numeroCelularComprador = lector.nextLong();
         
         //Cerramos el lector que usamos
         lector.close();
+        System.out.println(""); //Cadena vacia para dejar un espacio
 
-        System.out.println("");
+        //Mensaje final de confirmación de compra
         System.out.println("Muchas gracias por su compra :)");
         System.out.println("Comprobante enviado al email y celular proporcionado.");
         System.out.println("Recuerde presentarlo en puerta para entrar.");
-        System.out.println("");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("");
 
+        System.out.println(""); //Cadena vacia para dejar un espacio
 
         //IMPRIMIMOS EL COMPROBANTE DE COMPRA
 
-        System.out.println("\u001B[33m--------------------------------------------------------------------------");
-        System.out.println("----------------------" + "\033[31m" + "COMPROBANTE DE COMPRA" + "\u001B[33m" + "-------------------------------");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("+ CANTIDAD DE ENTRADAS COMPRADAS: " + "\033[34m" + cantidadEntradasComprar + "\u001B[33m");
-        System.out.println("+ EMAIL DE COMPRA: " + "\033[34m" + emailComprador + "\u001B[33m");
-        System.out.println("+ CELULAR DE COMPRA: " + "\033[34m" + numeroCelularComprador + "\u001B[33m");
-        System.out.println("--------------------------------------------------------------------------");
+    
+        System.out.println("COMPROBANTE DE COMPRA:");
+        System.out.println("+ CANTIDAD DE ENTRADAS COMPRADAS: " + cantidadEntradasComprar);
+        System.out.println("+ EMAIL DE COMPRA: " + emailComprador);
+        System.out.println("+ CELULAR DE COMPRA: " + numeroCelularComprador);
 
-        System.out.println("");
-        System.out.println("");
+        System.out.println(""); //Cadena vacia para dejar un espacio
 
         //MOSTRAMOS INFORMACION PARA LA EMPRESA y la Imprimimos
 
-        System.out.println("\u001B[36m--------------------------------------------------------------------------");
-        System.out.println("---------------------- INFORMACION VENTAS  -------------------------------");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("+ CANTIDAD DE ENTRADAS VENDIDAS: " + "\u001B[35m" + cantidadEntradasVendidas + "\u001B[36m");
-        System.out.println("+ TOTAL DINERO RECAUDADO: " + "\u001B[35m$" + cantidadDineroRecaudado + "\u001B[36m");
-        System.out.println("+ CANTIDAD DE ENTRADAS DISPONIBLES: " + "\u001B[35m" + cantidadEntradasDisponibles + "\u001B[36m");
-        System.out.println("--------------------------------------------------------------------------"+ "\033[0m");
+        System.out.println("INFORMACION VENTAS:");
+        System.out.println("+ CANTIDAD DE ENTRADAS VENDIDAS: " + cantidadEntradasVendidas);
+        System.out.println("+ TOTAL DINERO RECAUDADO: " + cantidadDineroRecaudado);
+        System.out.println("+ CANTIDAD DE ENTRADAS DISPONIBLES: " + cantidadEntradasDisponibles);
     }
 }
