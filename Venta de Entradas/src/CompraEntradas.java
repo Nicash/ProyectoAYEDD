@@ -2,21 +2,24 @@ import java.util.Scanner; //Esta utilidad la vamos a usar para que el usuario in
 
 public class CompraEntradas {
     public static void main(String[] args) throws Exception {
-        // DECLARAMOS LAS VARIABLES QUE VAMOS A UTILIZAR Y LE DAMOS VALOR A LAS PREDEFINIDAS
+        // DECLARAMOS E INICIALIZAMOS LAS VARIABLES QUE VAMOS A UTILIZAR
         
         // DATOS DE ENTRADA:
 
-            int cantidadEntradasComprar; //La cantidad de entradas que va a querer comprar el usuario.
-            String emailComprador; //El email del comprador, donde se enviará el comprobante de compra.
-            long numeroCelularComprador; //El nro de telefono del comprador, donde se enviará el comprobante de compra.
+            int cantidadEntradasComprar = 0; //La cantidad de entradas que va a querer comprar el usuario.
+            String emailComprador = ""; //El email del comprador, donde se enviará el comprobante de compra.
+            long numeroCelularComprador = 0; //El nro de telefono del comprador, donde se enviará el comprobante de compra.
 
         // DATOS DE SALIDA:
 
             int cantidadEntradasDisponibles = 100; //La cantidad de entradas disponibles que el usuario puede comprar.
             int precioEntrada = 500 ; //El precio de las entradas.
+
+            String nombreBanda = "Los Garcia"; //Nombre de la banda
             String fechaConcierto = "09/07/2023"; //La fecha en que se realizará el concierto.
             String horaConcierto = "20:00"; //La hora en la que se realizará el concierto.
             String lugarConcierto = "Estadio River Plate"; //El lugar donde se realizará el concierto.
+
             int cantidadEntradasVendidas = 0; //La cantidad total de entradas vendidas.
             int cantidadDineroRecaudado = 0; //La cantidad total de dinero recaudado.
 
@@ -24,7 +27,7 @@ public class CompraEntradas {
 
         //Saludamos y damos la información del Concierto
         
-        System.out.println("Bienvenido al portal de compra de entradas para el recital de 'Los Garcia'"); //Bienvenida
+        System.out.println("Bienvenido al portal de compra de entradas para el recital de '" + nombreBanda + "'"); //Bienvenida usando el nombre de la banda
 
         System.out.println("Fecha: " + fechaConcierto +" - Hora: " + horaConcierto + " - Lugar: " + lugarConcierto ); //Datos: Fecha, Hora y Lugar
 
@@ -83,5 +86,8 @@ public class CompraEntradas {
         System.out.println("+ CANTIDAD DE ENTRADAS VENDIDAS: " + cantidadEntradasVendidas);
         System.out.println("+ TOTAL DINERO RECAUDADO: " + cantidadDineroRecaudado);
         System.out.println("+ CANTIDAD DE ENTRADAS DISPONIBLES: " + cantidadEntradasDisponibles);
+
+        System.out.println(""); //Cadena vacia para dejar un espacio
+        
     }
 }
