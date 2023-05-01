@@ -47,9 +47,9 @@ public class CompraEntradas {
         lector.nextLine(); //salto de linea para q no me de error luego al leer el String
 
         //Hacemos los calculos necesarios en base a la cantidad de entradas que eligió el usuario
-        cantidadEntradasDisponibles = cantidadEntradasDisponibles - cantidadEntradasComprar; //restamos las compradas al total
-        cantidadEntradasVendidas = cantidadEntradasVendidas + cantidadEntradasComprar; //sumamos entradas vendidas a la variable que las contabiliza
-        cantidadDineroRecaudado = cantidadDineroRecaudado + (cantidadEntradasComprar * precioEntrada); //calculamos el dinero juntado con esta compra
+        cantidadEntradasDisponibles -= cantidadEntradasComprar; //restamos las compradas al total
+        cantidadEntradasVendidas += cantidadEntradasComprar; //sumamos entradas vendidas a la variable que las contabiliza
+        cantidadDineroRecaudado += (cantidadEntradasComprar * precioEntrada); //calculamos el dinero juntado con esta compra
 
         //Preguntamos el email para enviar el comprobante
         System.out.print("- Introduzca un email para enviar el comprobante de compra: ");
