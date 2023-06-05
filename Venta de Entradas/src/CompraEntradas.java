@@ -27,32 +27,33 @@ public class CompraEntradas {
     public static int cantidadDineroRecaudado = 0; //La cantidad total de dinero recaudado.
 
     //VARIABLES DEL ESTADIO
-    public static final int ASIENTOSRANDOMOCUPADOS = 10;
-    public static final int FILAS = 10;
-    public static final int COLUMNAS = 10;
-    public static String[][] estadio = new String[FILAS][COLUMNAS];
+    public static final int ASIENTOSRANDOMOCUPADOS = 20; //Cantidad aleatoria de asientos para simular compras anteriores
+    public static final int FILAS = 10; //Cantidad de Filas
+    public static final int COLUMNAS = 10; //Cantidad de Columnas
+    public static String[][] estadio = new String[FILAS][COLUMNAS];  //Array de las ubicaciones del estadio
 
     //COLORES
     // Colores ANSI para la consola
-    public static String reset = "\u001B[0m";
-    public static String negro = "\u001B[30m";
-    public static String rojo = "\u001B[31m";
-    public static String verde = "\u001B[32m";
-    public static String amarillo = "\u001B[33m";
-    public static String azul = "\u001B[34m";
-    public static String magenta = "\u001B[35m";
-    public static String cyan = "\u001B[36m";
-    public static String blanco = "\u001B[37m";
+    public static String COLOR_RESET = "\u001B[0m";
+    public static String COLOR_NEGRO = "\u001B[30m";
+    public static String COLOR_ROJO = "\u001B[31m";
+    public static String COLOR_VERDE = "\u001B[32m";
+    public static String COLOR_AMARILLO = "\u001B[33m";
+    public static String COLOR_AZUL = "\u001B[34m";
+    public static String COLOR_MAGENTA = "\u001B[35m";
+    public static String COLOR_CYAN = "\u001B[36m";
+    public static String COLOR_BLANCO = "\u001B[37m";
 
     // Estilos de texto ANSI para la consola
-    public static String negrita = "\u001B[1m";
-    public static String subrayado = "\u001B[4m";
-    public static String parpadeo = "\u001B[5m";
-    public static String inverso = "\u001B[7m";
+    public static String FUENTE_NEGRITA = "\u001B[1m";
+    public static String FUENTE_SUBRAYADO = "\u001B[4m";
+    public static String FUENTE_PARPADEO = "\u001B[5m";
+    public static String FUENTE_INVERSO = "\u001B[7m";
 
 
 
     public static void main(String[] args) throws Exception {
+
         // ARRANCAMOS CON LA SECUENCIA DEL PROGRAMA
 
         randomizarEstadio(); //damos lugares aleatorios al estadio para simular compras anteriores
@@ -69,14 +70,14 @@ public class CompraEntradas {
         //Saludamos y damos la información del Concierto
 
         System.out.println("------------------------------------------------------------------------------------------------------------");
-        System.out.println("               Bienvenido al portal de compra de entradas para el recital de " + "\033[31m" + "Los Garcia" + "\033[0m");
-        System.out.println("                      Fecha: " + "\033[34m" + fechaConcierto + "\033[0m" +" - Hora: " + "\033[34m" + horaConcierto + "\033[0m" + " - Lugar: " + "\033[34m" + lugarConcierto  + "\033[0m" );
+        System.out.println("               Bienvenido al portal de compra de entradas para el recital de " + COLOR_ROJO + "Los Garcia" + COLOR_RESET);
+        System.out.println("                      Fecha: " + COLOR_AZUL + fechaConcierto + COLOR_RESET +" - Hora: " + COLOR_AZUL + horaConcierto + COLOR_RESET + " - Lugar: " + COLOR_AZUL + lugarConcierto  + COLOR_RESET );
         System.out.println("");
-        System.out.println("                                   Cantidad de entradas disponibles: " + "\033[32m" + cantidadEntradasDisponibles + "\033[0m");
-        System.out.println("                                        Precio de las entradas: " + "\u001B[35m$" + precioEntrada + "\033[0m");
+        System.out.println("                                   Cantidad de entradas disponibles: " + COLOR_VERDE + cantidadEntradasDisponibles + COLOR_RESET);
+        System.out.println("                                        Precio de las entradas: " + COLOR_MAGENTA + precioEntrada + COLOR_RESET);
         System.out.println("");
         System.out.println("------------------------------------------------------------------------------------------------------------");
-        System.out.println("  [1] Comprar Entradas | [2] Ver Entradas Disponibles | [3] Mis Entradas | [4] \033[31mAdministracion\033[0m | [5] Salir  ");
+        System.out.println("  [1] Comprar Entradas | [2] Ver Entradas Disponibles | [3] Mis Entradas | [4] " + COLOR_ROJO + "Administracion" + COLOR_RESET + " | [5] Salir  ");
         System.out.println("------------------------------------------------------------------------------------------------------------");
         System.out.println("");
         System.out.print("- Elige una opcion: ");
@@ -166,15 +167,16 @@ public class CompraEntradas {
                 limpiarConsola();
                 dibujarEstadio();
 
-                System.out.println("\u001B[4mBoleto N°" + (i + 1) + ":\u001B[0m");
+                System.out.println(FUENTE_SUBRAYADO + "Boleto N°" + (i + 1) + ":" + COLOR_RESET);
                 System.out.print("Introduzca n° de FILA: ");
 
-                pick_fila = venta_de_entradas.sc.nextInt() - 1;
+                pick_fila = lector.nextInt() - 1;
+                lector.nextLine();
         
                 if (pick_fila < 0 || pick_fila >= estadio.length) {
 
-                    System.out.println("Has elegido una fila inexistente, por favor inténtalo de nuevo.");
-
+                    System.out.println("Has elegido una fila inexistente, por favor inténtalo de nuevo. Presione 'Enter' para continuar...");
+                    lector.nextLine();
                 }
 
             } while (pick_fila < 0 || pick_fila >= estadio.length);
@@ -183,12 +185,13 @@ public class CompraEntradas {
 
                 System.out.print("Introduzca n° de COLUMNA: ");
 
-                pick_columna = venta_de_entradas.sc.nextInt() - 1;
+                pick_columna = lector.nextInt() - 1;
+                lector.nextLine();
         
                 if (pick_columna < 0 || pick_columna >= estadio[pick_fila].length) {
 
-                    System.out.println("Has elegido una columna inexistente, por favor inténtalo de nuevo.");
-
+                    System.out.println("Has elegido una columna inexistente, por favor inténtalo de nuevo. Presione 'Enter' para continuar...");
+                    lector.nextLine();
                 }
 
             } while (pick_columna < 0 || pick_columna >= estadio[pick_fila].length);
@@ -206,6 +209,11 @@ public class CompraEntradas {
                 entradasCompradasArray[i][0] = pick_fila;
                 entradasCompradasArray[i][1] = pick_columna;
                 System.out.println("");
+                try {
+                    Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 limpiarConsola();
                 dibujarEstadio();
             }
@@ -216,7 +224,7 @@ public class CompraEntradas {
         System.out.println("Sus asientos se han guardado exitosamente.");
         
         for(int j = 0; j < cantidadEntradasComprar; j++){
-            System.out.println("\u001B[4mBoleto N°" + (j + 1) + ":\u001B[0m Fila " + (entradasCompradasArray[j][0]+1) + " - Columna: " + (entradasCompradasArray[j][1]+1));
+            System.out.println(FUENTE_SUBRAYADO + "Boleto N°" + (j + 1) + ":" + COLOR_RESET + " Fila " + (entradasCompradasArray[j][0]+1) + " - Columna: " + (entradasCompradasArray[j][1]+1));
         }
         
         System.out.println("");
@@ -299,7 +307,7 @@ public class CompraEntradas {
     }
     public static void dibujarEstadio(){
         
-        System.out.println("");
+        System.out.println(FUENTE_NEGRITA + "");
         System.out.println("-----------------------------------");
         System.out.println("        ASIENTOS DISPONIBLES       ");
         System.out.println("                (" + cantidadEntradasDisponibles + ")");
@@ -342,7 +350,7 @@ public class CompraEntradas {
             }
             
             System.out.println("-----------------------------------");
-            System.out.println("");
+            System.out.println("" + COLOR_RESET);
     
     }
     public static void limpiarConsola(){
