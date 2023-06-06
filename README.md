@@ -21,18 +21,18 @@ analizar el éxito de los eventos y mejorar la planificación de futuros eventos
 - [x] 3. Desarrollar los programas que permitan ingresar y mostrar por teclado los datos de entrada definidos
 como de tipo primitivo utilizando solo estructuras de control de tipo secuencia.
 
-- [ ] ~~4. Agregar estructuras de control de tipo repetición a los programas desarrollados en el ítem 3.~~
+- [x] 4. Agregar estructuras de control de tipo repetición a los programas desarrollados en el ítem 3.
 
-- [ ] ~~5. Agregar estructuras de control de tipo selección a los programas desarrollados en el ítem 4.~~
+- [x] 5. Agregar estructuras de control de tipo selección a los programas desarrollados en el ítem 4.
 
-- [ ] ~~6. Agregar las sentencias que permitan ingresar y mostrar por teclado los datos de entrada definidos
-como de tipo de referencia a los programas desarrollados en el ítem 5.~~
+- [x] 6. Agregar las sentencias que permitan ingresar y mostrar por teclado los datos de entrada definidos
+como de tipo de referencia a los programas desarrollados en el ítem 5.
 
-- [ ] ~~7. Agregar estructuras de control de tipo repetición a los programas desarrollados en el ítem 6 para
-manipular los datos de tipo de referencia.~~
+- [x] 7. Agregar estructuras de control de tipo repetición a los programas desarrollados en el ítem 6 para
+manipular los datos de tipo de referencia.
 
-- [ ] ~~8. Agregar estructuras de control de tipo selección a los programas desarrollados en el ítem 7 para
-manipular los datos de tipo de referencia.~~
+- [x] 8. Agregar estructuras de control de tipo selección a los programas desarrollados en el ítem 7 para
+manipular los datos de tipo de referencia.
 
 
 
