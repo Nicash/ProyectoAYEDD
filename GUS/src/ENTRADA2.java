@@ -136,7 +136,7 @@ public class ENTRADA2 {
                     String codigoPago = generarCodigoAleatorio();
                     System.out.println("\nMuchas gracias por su compra.");
                     System.out.println("El código de pago es: " + codigoPago);
-                    System.out.println("Por favor, muestre este código en caja para abonar y retirar su entrada.");
+                    System.out.println("Por favor, muestre este código en caja para abonar y retirar su entrada. Este código es válido hasta 20 min antes de la función.");
                 } else if (opcionMetodoPago == 2) {
                     // Pago con tarjeta
                     System.out.println("\nIngrese los datos de la tarjeta:");
