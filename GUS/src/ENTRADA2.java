@@ -21,20 +21,20 @@ public class ENTRADA2 {
             // Selección de película
             System.out.println("Bienvenido a nuestro sistema de compra de entradas de cine");
             System.out.println("Por favor, seleccione una película:");
-            System.out.println("1. Openhaimer");
-            System.out.println("2. Flash");
-            System.out.println("3. Rápido y Furioso X");
+            System.out.println("1. The Weeknd");
+            System.out.println("2. Taylor Swift");
+            System.out.println("3. Babasónicos");
             int opcionPelicula = scanner.nextInt();
             
             switch (opcionPelicula) {
                 case 1:
-                    pelicula = "Openhaimer";
+                    pelicula = "The Weeknd";
                     break;
                 case 2:
-                    pelicula = "Flash";
+                    pelicula = "Taylor Swift";
                     break;
                 case 3:
-                    pelicula = "Rápido y Furioso X";
+                    pelicula = "Babasónicos";
                     break;
                 default:
                     System.out.println("Opción inválida. Saliendo del programa.");
