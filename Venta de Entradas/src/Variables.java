@@ -6,12 +6,14 @@ public class Variables {
     public static String nombreBanda = "Los Garcia"; //Nombre de la banda
     public static String fechaConcierto = "09/07/2023"; //La fecha en que se realizará el concierto.
     public static String horaConcierto = "20:00"; //La hora en la que se realizará el concierto.
-    public static String lugarConcierto = "Estadio River Plate"; //El lugar donde se realizará el concierto.
+    public static String lugarConcierto = "Teatro Ideal"; //El lugar donde se realizará el concierto.
 
     public static int cantidadEntradasVendidas = 0; //La cantidad total de entradas vendidas.
     public static int cantidadDineroRecaudado = 0; //La cantidad total de dinero recaudado.
-    
-    
+
+    public static Cliente arrayClientes[] = new Cliente[100];
+
+     
     public static class Color { 
         public static final String RESET = "\u001B[0m";
         public static final String NEGRO = "\u001B[30m";

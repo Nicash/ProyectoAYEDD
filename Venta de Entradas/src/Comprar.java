@@ -6,14 +6,21 @@ public class Comprar{
     public static long numeroCelularComprador = 0; //El nro de telefono del comprador, donde se enviará el comprobante de compra.
 
     public static void compraEntradas(){
-        
-        //Preguntamos la cantidad de entradas a comprar. El usuario debe ingresar la cantidad.
+        System.out.print("Ingrese su numero de DNI: ");
+        String dniCompra = Utilidades.lector.nextLine();
 
+        if(!Cliente.existeCliente(dniCompra)){
+            System.out.println("No tienes cuenta creada. Vamos a crearte una.");
+            System.out.println("+ Ingresa tus datos:");
+            Cliente.crearCuenta(dniCompra);
+        }
+        
+        Utilidades.limpiarConsola();
         Estadio.dibujarEstadio(); //antes de elegir cuantas entradas quiere comprar dibujamos el estadio y mostramos la cantidad disponible
     
         do {
-
-            System.out.print("Ingrese la cantidad de entradas que desea comprar: ");
+            System.out.println("Bienvenido, " + Cliente.getNameByDNI(dniCompra) + "."); //Saludamos con el nombre
+            System.out.print("Ingrese la cantidad de entradas que desea comprar: "); //Preguntamos la cantidad de entradas a comprar. El usuario debe ingresar la cantidad.
 
             cantidadEntradasComprar = Utilidades.lector.nextInt();
             Utilidades.lector.nextLine(); //salto de linea para q no me de error luego al leer el String
@@ -84,56 +91,39 @@ public class Comprar{
                 entradasCompradasArray[i][0] = pick_fila;
                 entradasCompradasArray[i][1] = pick_columna;
                 System.out.println("");
-                try {
-                    Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
+
+                
+                Utilidades.esperar(1);
+
                 Utilidades.limpiarConsola();
                 Estadio.dibujarEstadio();
             }
             
         }
+        Utilidades.limpiarConsola();
+        System.out.println("Muchas gracias por su compra.");
+        System.out.println("Comprobante enviado a: " + Cliente.getEmailByDNI(dniCompra)); 
 
-        System.out.println("");
-        System.out.println("Sus asientos se han guardado exitosamente.");
-        
+        //IMPRIMIMOS EL COMPROBANTE DE COMPRA
+        System.out.println(Variables.Color.CYAN);
+        System.out.println("-----------------------------------");
+        System.out.println("       COMPROBANTE DE COMPRA       ");
+        System.out.println("-----------------------------------");
+        System.out.println("Cliente: " + Cliente.getNameByDNI(dniCompra) + " " + Cliente.getApellidoByDNI(dniCompra));
+        System.out.println("DNI: " + dniCompra);
+        System.out.println("-----------------------------------");
         for(int j = 0; j < cantidadEntradasComprar; j++){
-            System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (j + 1) + ":" + Variables.Fuente.RESET + " Fila " + (entradasCompradasArray[j][0]+1) + " - Columna: " + (entradasCompradasArray[j][1]+1));
+            int posFila = entradasCompradasArray[j][0];
+            int posColumna = entradasCompradasArray[j][1];
+            
+            System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (j + 1) + ":" + Variables.Fuente.RESET + Variables.Color.CYAN + " Fila " + (posFila+1) + " - Columna: " + (posColumna+1));
+            
+            Cliente.agregarBoleto(dniCompra,(posFila+1),(posColumna+1));
         }
-        
-        System.out.println("");
-    
 
-    
-
-    //Preguntamos el email para enviar el comprobante
-        System.out.print("- Introduzca un email para enviar el comprobante de compra: ");
-        emailComprador = Utilidades.lector.nextLine();
-
-    //Preguntamos el celular para enviar el comprobante
-        System.out.print("- Introduzca un numero de celular para enviar el comprobante de compra: ");
-        numeroCelularComprador = Utilidades.lector.nextLong();
-    
-        System.out.println(""); //Cadena vacia para dejar un espacio
-
-    //Mensaje final de confirmación de compra
-        System.out.println("Muchas gracias por su compra :)");
-        System.out.println("Comprobante enviado al email y celular proporcionado.");
-        System.out.println("Recuerde presentarlo en puerta para entrar.");
-
-        System.out.println(""); //Cadena vacia para dejar un espacio
-
-    //IMPRIMIMOS EL COMPROBANTE DE COMPRA
-
-
-        System.out.println("COMPROBANTE DE COMPRA:");
-        System.out.println("+ CANTIDAD DE ENTRADAS COMPRADAS: " + cantidadEntradasComprar);
-        System.out.println("+ EMAIL DE COMPRA: " + emailComprador);
-        System.out.println("+ CELULAR DE COMPRA: " + numeroCelularComprador);
-
-        System.out.println(""); //Cadena vacia para dejar un espacio
-
+        System.out.println("-----------------------------------");
+        System.out.println(Variables.Color.RESET);
     }
 
 }

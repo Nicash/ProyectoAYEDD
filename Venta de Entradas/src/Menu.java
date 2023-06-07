@@ -47,7 +47,7 @@ public  class Menu{
 
                 case "3":
                     Utilidades.limpiarConsola();
-
+                    Cliente.verEntradas();
                     break;
 
                 case "4":

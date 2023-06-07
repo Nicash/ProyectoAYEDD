@@ -12,4 +12,12 @@ public class Utilidades {
         }
     }
 
+    public static void esperar(int segundos){
+        try {
+            Thread.sleep(segundos * 1000); // Pausa de 1 segundo (1000 milisegundos)
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -50,41 +50,53 @@ public class Estadio {
         System.out.println("        ASIENTOS DISPONIBLES       ");
         System.out.println("                (" + Variables.cantidadEntradasDisponibles + ")");
         System.out.println("         Las posiciones con        ");
-        System.out.println("      una 'X' estan ocupadas.      ");
+        System.out.println("      una '" + Variables.Color.ROJO + "X" + Variables.Color.RESET + "' estan ocupadas.      ");
         System.out.println("-----------------------------------");
 
-        System.out.print("  | ");
-    
+        System.out.print(Variables.Fuente.SUBRAYADO +  "   | ");
+            
+            System.out.print(Variables.Color.CYAN);
+
             for (int i = 1; i <= estadio[0].length; i++) {
-    
+                
                 System.out.print(" " + i + " ");
+               
             }
-    
-            char letras = 'a';
-       
+
+            System.out.print(Variables.Color.RESET);
+
+            //char letras = 'a';
+            int filaD = 1;
+
             System.out.println("");
     
     
             for (int i = 0; i < FILAS; i++) {
-    
-                System.out.print(letras + " | ");
-    
+                
+                if(filaD <10){
+                System.out.print(Variables.Color.VERDE + filaD  +"  | " + Variables.Color.RESET);
+                }
+                else{
+                System.out.print(Variables.Color.VERDE + filaD + " | " + Variables.Color.RESET);
+                }
+
                 for (int j = 0; j < COLUMNAS; j++) {
-    
+                    
+                   
                     if (estadio[i][j] != "x") {
-    
+                        
                         System.out.print("[ " + estadio[i][j] + "]");
                         
                     } else {
     
-                        System.out.print("[" + estadio[i][j] + "]");
+                        System.out.print("[" + Variables.Color.ROJO  + estadio[i][j] + Variables.Color.RESET + "]");
                     }
-    
+                    
                 }
     
                 System.out.println("");
     
-                letras ++;
+                filaD++;
             }
             
             System.out.println("-----------------------------------");
