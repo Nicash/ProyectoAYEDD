@@ -24,50 +24,51 @@ public  class Menu{
             System.out.println("");
             System.out.print("- Elige una opcion: ");
     
-            opcion = Utilidades.lector.nextLine(); //el usuario debe ingresar el nro correspondiente a la opcion del menu
+            opcion = Utilidades.lector.nextLine(); //El usuario debe ingresar el nro correspondiente a la opcion del menu
 
             switch (opcion) {
 
                 case "1":
             
-                    Utilidades.limpiarConsola();
-                    Comprar.compraEntradas();
-                    System.out.println("Presione 'Enter' para volver al menu...");
+                    Utilidades.limpiarConsola(); //Limpiamos la consola
+                    Comprar.compraEntradas(); //Llama al metodo especifico para la Compra de Entradas
+                    System.out.println("Presione 'Enter' para volver al menu..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
                     Utilidades.lector.nextLine();
 
                     break;
 
                 case "2":
-                    Utilidades.limpiarConsola();
-                    Estadio.dibujarEstadio();
-                    System.out.println("Presione 'Enter' para volver al menu...");
+                    Utilidades.limpiarConsola(); //Limpiamos la consola
+                    Estadio.dibujarEstadio();  //Llama al metodo especifico para Dibujar el Estadio y mostrar las posiciones disponibles
+                    System.out.println("Presione 'Enter' para volver al menu..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
                     Utilidades.lector.nextLine();
 
                     break;
 
                 case "3":
-                    Utilidades.limpiarConsola();
-                    Cliente.verEntradas();
+                    Utilidades.limpiarConsola(); //Limpiamos la consola
+                    Cliente.verEntradas(); //Llamamos al método específico para que el usuario pueda ver las entradas que compró
+                    System.out.println("Presione 'Enter' para volver al menu..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
+                    Utilidades.lector.nextLine();
                     break;
 
                 case "4":
-                    Utilidades.limpiarConsola();
-                    Administracion.verInformacion();
-                    System.out.println("Presione 'Enter' para volver al menu...");
+                    Utilidades.limpiarConsola(); //Limpiamos la consola
+                    Administracion.verInformacion(); //Llamamos al método especifico de la Administración
+                    System.out.println("Presione 'Enter' para volver al menu..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
                     Utilidades.lector.nextLine();
 
                     break;
         
                 case "5":
-                    Utilidades.lector.close();
-                    System.out.print("Saliendo...");
-                    funcionando = false;
-
+                    Utilidades.lector.close(); //Cerramos el lector antes de salir del programa
+                    System.out.print("Saliendo...");  //Mensaje que avisa que el programa se está cerrando
+                    funcionando = false;  //Ponemos en 'false' la variable booleana que hacia que el bucle del Menu funcionara, de esta manera el programa termina
                     break;
 
                 default:
 
-                    System.out.println("Opción inválida. Por favor, elige nuevamente. Presione 'Enter' para continuar...");
+                    System.out.println("Opción inválida. Por favor, elige nuevamente. Presione 'Enter' para continuar...");  //Cada vez que se ponga una opcion invalida se avisa y se vuelve a la eleccion de opcion
                     Utilidades.lector.nextLine();
 
                     break;

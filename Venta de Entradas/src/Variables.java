@@ -11,9 +11,9 @@ public class Variables {
     public static int cantidadEntradasVendidas = 0; //La cantidad total de entradas vendidas.
     public static int cantidadDineroRecaudado = 0; //La cantidad total de dinero recaudado.
 
-    public static Cliente arrayClientes[] = new Cliente[100];
+    public static Cliente arrayClientes[] = new Cliente[100]; //Inicializamos un arreglo del tipo Cliente con 100 posiciones, que va a tener todos los datos de los clientes con las entradas que compraron
 
-     
+    //Variables de Color
     public static class Color { 
         public static final String RESET = "\u001B[0m";
         public static final String NEGRO = "\u001B[30m";

@@ -1,12 +1,14 @@
 public class Cliente{
+    
     private String dni;
     private String nombre;
     private String apellido;
     private String email;
     private String telefono;
-    private int[][] entradasCompradas;
-    private int contadorEntradas;
+    private int[][] entradasCompradas; //en este array se van a guardar una por una las posiciones de las entradas que compre el usuario
+    private int contadorEntradas; //con este contador vamos a saber el total de entradas que compró el usuario
     
+    //Constructor de la clase Cliente
     public Cliente(String dni, String nombre, String apellido, String email, String telefono) {
         this.dni = dni;
         this.nombre = nombre;
@@ -17,6 +19,7 @@ public class Cliente{
         this.contadorEntradas = 0;
     }
 
+    //Metodo para agregar un Cliente al Array de Clientes en la primera posicion vacia que se encuentre
     public void agregarCliente(Cliente nuevoCliente) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i] == null) { // Encuentra el primer índice vacío
@@ -26,6 +29,7 @@ public class Cliente{
         }
     }
 
+    //Metodo que devuelve un booleano que indica si ya existe un usuario con el DNI que se indica
     public static boolean existeCliente(String dni) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i] != null) {
@@ -38,6 +42,7 @@ public class Cliente{
 
     }
 
+    //Metodo que por medio del DNI proporcionado nos indica en qué posicion del array de clientes se encuentra el usuario
     public static int posCliente(String dni) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i] != null) {
@@ -50,6 +55,7 @@ public class Cliente{
 
     }
 
+    //Metodo que devuelve el Nombre del Usuario al proporcionarle el DNI del mismo
     public static String getNameByDNI(String dni) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i].dni.equals(dni)) {
@@ -60,6 +66,7 @@ public class Cliente{
         return "error";
     }
 
+    //Metodo que devuelve el Apellido del Usuario al proporcionarle el DNI del mismo
     public static String getApellidoByDNI(String dni) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i].dni.equals(dni)) {
@@ -70,6 +77,7 @@ public class Cliente{
         return "error";
     }
 
+    //Metodo que devuelve el eMail del Usuario al proporcionarle el DNI del mismo
     public static String getEmailByDNI(String dni) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i].dni.equals(dni)) {
@@ -79,6 +87,7 @@ public class Cliente{
         return "error";
     }
 
+    //Metodo que devuelve el Telefono del Usuario al proporcionarle el DNI del mismo
     public static String getTelefonoByDNI(String dni) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i].dni.equals(dni)) {
@@ -89,6 +98,7 @@ public class Cliente{
         return "error";
     }
     
+    //Con este Metodo creamos una cuenta con los parametros que le proporcionemos al iniciar el programa, sirve para testear
     public static void crearCuentaAdmin(String dni, String nombre, String apellido, String email, String telefono) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i] == null) { // Encuentra el primer índice vacío
@@ -101,7 +111,7 @@ public class Cliente{
         }
     }
 
-
+    //Con este Metodo vamos a pedirle todos los datos necesarios al usuario para crear el objeto Usuario y meterlo en el array de Clientes en la primera posicion vacia que encuentre
     public static void crearCuenta(String dni) {
         for (int i = 0; i < Variables.arrayClientes.length; i++) {
             if (Variables.arrayClientes[i] == null) { // Encuentra el primer índice vacío
@@ -127,18 +137,20 @@ public class Cliente{
         }
     }
 
+    //Con este Metodo vamos a poder ir agregando cada entrada que compre el Usuario al array de entradas compradas por el mismo
     public static void agregarBoleto(String dni, int fila, int columna) {
 
         int posCliente = posCliente(dni);
         int posEntrada = Variables.arrayClientes[posCliente].contadorEntradas;
 
-                        Variables.arrayClientes[posCliente].entradasCompradas[posEntrada][0] = fila;
-                        Variables.arrayClientes[posCliente].entradasCompradas[posEntrada][1] = columna;
-                        Variables.arrayClientes[posCliente].contadorEntradas += 1;
+        Variables.arrayClientes[posCliente].entradasCompradas[posEntrada][0] = fila;
+        Variables.arrayClientes[posCliente].entradasCompradas[posEntrada][1] = columna;
+        Variables.arrayClientes[posCliente].contadorEntradas += 1;
                     
         
     }
 
+    //Metodo para ver el total de entradas compradas por el usuario
     public static void verEntradas(){
 
         System.out.print("Ingrese su numero de DNI: ");
@@ -163,16 +175,12 @@ public class Cliente{
 
             }
             System.out.println("");
-            System.out.println("Presione 'Enter' para volver al menu.");
-            Utilidades.lector.nextLine();
             
         }                     
 
         else{
             System.out.println(Variables.Color.ROJO + "No tienes cuenta creada." + Variables.Color.RESET);
             System.out.println("");
-            System.out.println("Presione 'Enter' para volver al menu...");
-            Utilidades.lector.nextLine();
 
         } 
     }
