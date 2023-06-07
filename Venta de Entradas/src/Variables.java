@@ -14,8 +14,9 @@ public class Variables {
     public static Cliente arrayClientes[] = new Cliente[100]; //Inicializamos un arreglo del tipo Cliente con 100 posiciones, que va a tener todos los datos de los clientes con las entradas que compraron
 
     //Variables de Color
+
     public static class Color { 
-        public static final String RESET = "\u001B[0m";
+        public static final String RESET = "\u001B[0m"; //Pone el color por defecto
         public static final String NEGRO = "\u001B[30m";
         public static final String ROJO = "\u001B[31m";
         public static final String VERDE = "\u001B[32m";
