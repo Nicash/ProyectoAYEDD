@@ -27,5 +27,6 @@ out/
 # Archivos de configuración local
 .gradle/
 .vscode/
+.vs/
 
 bin/
