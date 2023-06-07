@@ -21,7 +21,6 @@ public class Estadio {
             }
         }
 
-
         Random random = new Random(1234); //Generador de numeros aleatorios con una semilla para que siempre ocupe los mismo lugares en cada inicio del programa
 
         for (int i = 0; i < ASIENTOSRANDOMOCUPADOS; i++) { //Bucle for para ir asignando todos los lugares aleatorios con el máximo prefijado antes
@@ -35,7 +34,6 @@ public class Estadio {
 
             } while(estadio[fila][columna].equals("x")); //Compara el lugar aleatorio con el string "x" que indica que la posicion está ocupada
             
-
             estadio[fila][columna] = "x"; //Si salió del bucle quiere decir que la posicion de las variables temporales no esta ocupada y la ocupa escribiendole el valor string "x"
 
         }
@@ -56,54 +54,61 @@ public class Estadio {
         System.out.println("         Las posiciones con        ");
         System.out.println("      una '" + Variables.Color.ROJO + "X" + Variables.Color.RESET + "' estan ocupadas.      ");
         System.out.println("-----------------------------------");
-
+        
         System.out.print(Variables.Fuente.SUBRAYADO +  "   | ");
             
-            System.out.print(Variables.Color.CYAN);
+        System.out.print(Variables.Color.CYAN);
 
-            for (int i = 1; i <= estadio[0].length; i++) {
+        for (int i = 1; i <= estadio[0].length; i++) {
                 
-                System.out.print(" " + i + " ");
+            System.out.print(" " + i + " ");
                
+        }
+
+        System.out.print(Variables.Color.RESET);
+
+        int filaD = 1;
+
+        System.out.println("");
+    
+    
+        for (int i = 0; i < FILAS; i++) {
+                
+            if(filaD <10){
+                
+                System.out.print(Variables.Color.VERDE + filaD  +"  | " + Variables.Color.RESET);
+
             }
 
-            System.out.print(Variables.Color.RESET);
+            else{
 
-            int filaD = 1;
-
-            System.out.println("");
-    
-    
-            for (int i = 0; i < FILAS; i++) {
-                
-                if(filaD <10){
-                System.out.print(Variables.Color.VERDE + filaD  +"  | " + Variables.Color.RESET);
-                }
-                else{
                 System.out.print(Variables.Color.VERDE + filaD + " | " + Variables.Color.RESET);
-                }
 
-                for (int j = 0; j < COLUMNAS; j++) {
-                    
-                   
-                    if (estadio[i][j] != "x") {
+            }
+
+            for (int j = 0; j < COLUMNAS; j++) {
                         
-                        System.out.print("[ " + estadio[i][j] + "]");
+                if (estadio[i][j] != "x") {
                         
-                    } else {
+                    System.out.print("[ " + estadio[i][j] + "]");
+                        
+                } else {
     
-                        System.out.print("[" + Variables.Color.ROJO  + estadio[i][j] + Variables.Color.RESET + "]");
-                    }
-                    
-                }
+                    System.out.print("[" + Variables.Color.ROJO  + estadio[i][j] + Variables.Color.RESET + "]");
+
+                }    
+
+            }
     
                 System.out.println("");
     
                 filaD++;
+
             }
             
             System.out.println("-----------------------------------");
             System.out.println("" + Variables.Fuente.RESET);
-    
+
     }
+
 }

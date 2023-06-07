@@ -86,8 +86,6 @@ public class Comprar{
                 Utilidades.lector.nextLine();
                 i --;
 
-                
-
             } else {
 
                 //En el caso que las posiciones sean correctas y no esten ocupadas vamos a marcar la posicion en el diagrama del Estadio como ocupada asignandole una X
@@ -101,6 +99,7 @@ public class Comprar{
                 Utilidades.esperar(1); //Esperamos un segundo luego de mostar el mensaje de eleccion de fila y columna para que de tiempo a leer
                 Utilidades.limpiarConsola(); //Limpiamos la consola
                 Estadio.dibujarEstadio(); //Volvemos a dibujar el estadio
+
             }
             
         }
@@ -118,16 +117,19 @@ public class Comprar{
         System.out.println("Cliente: " + Cliente.getNameByDNI(dniCompra) + " " + Cliente.getApellidoByDNI(dniCompra));
         System.out.println("DNI: " + dniCompra);
         System.out.println("-----------------------------------");
+
         for(int j = 0; j < cantidadEntradasComprar; j++){
+
             int posFila = entradasCompradasArray[j][0];
             int posColumna = entradasCompradasArray[j][1];
             
             System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (j + 1) + ":" + Variables.Fuente.RESET + Variables.Color.CYAN + " Fila " + (posFila+1) + " - Columna: " + (posColumna+1));
             
             Cliente.agregarBoleto(dniCompra,(posFila+1),(posColumna+1)); //con este Metodo agregamos las entradas una por una al array que posee cada usuario para tal fin
+       
         }
+
         System.out.println("-----------------------------------");
         System.out.println(Variables.Color.RESET);
     }
-
 }

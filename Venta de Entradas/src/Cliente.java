@@ -147,7 +147,6 @@ public class Cliente{
         Variables.arrayClientes[posCliente].entradasCompradas[posEntrada][1] = columna;
         Variables.arrayClientes[posCliente].contadorEntradas += 1;
                     
-        
     }
 
     //Metodo para ver el total de entradas compradas por el usuario
