@@ -1,0 +1,31 @@
+# Archivos de compilación
+*.class
+
+# Archivos generados por IDEs
+.idea/
+.classpath
+.project
+.settings/
+
+# Dependencias y bibliotecas
+/lib/
+
+# Archivos de construcción y configuración
+/target/
+build/
+nbbuild/
+nbmetadata/
+dist/
+out/
+*.jar
+
+# Archivos de registro y salida
+*.log
+*.bak
+*.swp
+
+# Archivos de configuración local
+.gradle/
+.vscode/
+
+bin/
