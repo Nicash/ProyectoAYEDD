@@ -5,6 +5,7 @@ public class Comprar{
     public static int cantidadEntradasComprar = 0; //La cantidad de entradas que va a querer comprar el usuario.
     public static String emailComprador = ""; //El email del comprador, donde se enviará el comprobante de compra.
     public static long numeroCelularComprador = 0; //El nro de telefono del comprador, donde se enviará el comprobante de compra.
+    public static String pago; //variable de opcion del Switch
 
     public static void compraEntradas(){
         System.out.print("Ingrese su numero de DNI: "); //Pedimos el DNI al usuario
@@ -113,6 +114,24 @@ public class Comprar{
             }
             
         }
+        
+        System.out.println("Elija un medio de pago");
+        System.out.println("[1]PAGO CON TARJETA |[2] PAGO CON EFECTIVO");
+            
+        pago = Utilidades.lector.nextLine(); //El usuario debe ingresar el nro correspondiente a la opcion de pago
+            
+            switch(pago){
+               
+                case "1":
+                    Utilidades.limpiarConsola(); //Limpiamos la consola
+                    Comprar.verTarjeta(); //Llama al metodo especifico para la Compra con tarjeta
+                    break;
+                                
+                case "2":
+                    Utilidades.limpiarConsola(); //Limpiamos la consola
+                    //Comprar.verefectivo(); //Llama al metodo especifico para la Compra con efectivo
+                    break;
+            }
 
         //Una vez terminado el bucle del total de entradas a comprar limpiamos la consola y generamos el comprobante con los datos de la compra
         Utilidades.limpiarConsola();
@@ -141,4 +160,28 @@ public class Comprar{
         System.out.println("-----------------------------------");
         System.out.println(Variables.Color.RESET);
     }
-}
+
+
+    public static void verTarjeta(){
+        System.out.print("Ingrese su numero de tarjeta: "); //Pedimos los numeros de la tarjeta
+        String numerodetarjeta = Utilidades.lector.nextLine();
+
+        System.out.print("Ingrese el nombre de la tarjeta: "); //Pedimos el nombre que figura en la tarjeta
+        String nombretarjeta = Utilidades.lector.nextLine();
+
+        System.out.print("Ingrese codigo de seguridad: "); //Pedimos los numeros de seguridad de la tarjeta
+        String seguridadtarjeta = Utilidades.lector.nextLine();
+    
+        System.out.print("Ingrese cantidad de cuotas (hasta 3 cuotas sin interes): "); //Pedimos la cantidad de cuotas
+        String cuotas = Utilidades.lector.nextLine();
+        
+        Utilidades.limpiarConsola(); //Limpiamos la consola
+
+        System.out.print("Procesando compra.");
+        Utilidades.esperar(1);
+        System.out.print(".");
+        Utilidades.esperar(1);
+        System.out.print(".");
+        Utilidades.esperar(1);
+    }
+    }
