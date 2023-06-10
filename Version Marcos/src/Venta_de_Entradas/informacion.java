@@ -8,22 +8,15 @@ public class informacion {
 
     public static int cantidad_entradas_vendidas = 0;
 
-
     public static void evento() {
-
-        System.out.println("¡Bienvenido a la pagina web de venta de entradas de Los Garcia!");
-
-        System.out.println("El concierto será en Base el 25 de Abril de 2023 a las 20:00 hrs.");
-
-        System.out.println("Actualmente hay " + (ENTRADAS - espacios_ocupados) + " disponibles.");
-
-        System.out.println("El precio de cada entrada es de $" + PRECIO + " pesos");
 
         do {
 
             System.out.print("Ingrese la cantidad de entradas que desea comprar: ");
 
-            cantidad_entradas_vendidas = venta_de_entradas.sc.nextInt();
+            cantidad_entradas_vendidas = programa.sc.nextInt();
+
+            programa.sc.nextLine();
 
             if (cantidad_entradas_vendidas > (ENTRADAS - espacios_ocupados)) {
 

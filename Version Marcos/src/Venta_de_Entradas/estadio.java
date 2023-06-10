@@ -11,9 +11,13 @@ public class estadio {
 
     public static void mostrarEstadio() {
 
-        System.out.println("");
-        System.out.println("Este es el estadio");
-        System.out.println("");
+        System.out.println("-----------------------------------");
+        System.out.println("        ASIENTOS DISPONIBLES       ");
+        System.out.println("                (" + (informacion.ENTRADAS - informacion.espacios_ocupados) + ")");
+        System.out.println("         Las posiciones con        ");
+        System.out.println("      una 'X' estan ocupadas.      ");
+        System.out.println("-----------------------------------");
+
 
         for (int i = 0; i < FILAS; i++) {
 
@@ -76,8 +80,6 @@ public class estadio {
             letras ++;
         }
 
-        System.out.println("");
-        System.out.println("Las posiciones que tienen una 'x' estan ocupadas.");
         System.out.println("");
 
     }

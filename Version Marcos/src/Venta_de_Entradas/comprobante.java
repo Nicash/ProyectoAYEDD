@@ -1,6 +1,6 @@
 public class comprobante {
 
-    public static void imprimir() {
+    public static void venta() {
 
         int opcion;
 
@@ -18,9 +18,9 @@ public class comprobante {
 
             System.out.print("Opcion: ");
 
-            opcion = venta_de_entradas.sc.nextInt();
+            opcion = programa.sc.nextInt();
 
-            venta_de_entradas.sc.nextLine();
+            programa.sc.nextLine();
 
             System.out.println("");
 
@@ -32,7 +32,7 @@ public class comprobante {
 
                         System.out.print("Ingrese su correo electrónico: ");
 
-                        gmail = venta_de_entradas.sc.nextLine();
+                        gmail = programa.sc.nextLine();
 
                         int arroba = 0;
 
@@ -82,7 +82,7 @@ public class comprobante {
 
                         System.out.print("Ingrese su número de teléfono: ");
 
-                        telefono = venta_de_entradas.sc.nextLine();
+                        telefono = programa.sc.nextLine();
 
                         if (telefono.matches("[0-9]+")) {
 

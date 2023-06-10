@@ -15,7 +15,7 @@ public class Cliente{
         this.apellido = apellido;
         this.email = email;
         this.telefono = telefono;
-        this.entradasCompradas = new int[100][2];
+        this.entradasCompradas = new int[Variables.cantidadInicialEntradas][2];
         this.contadorEntradas = 0;
     }
 

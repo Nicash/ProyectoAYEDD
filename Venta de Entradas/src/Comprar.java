@@ -178,10 +178,10 @@ public class Comprar{
         Utilidades.limpiarConsola(); //Limpiamos la consola
 
         System.out.print("Procesando compra.");
-        Utilidades.esperar(1);
+        Utilidades.esperar(500);
         System.out.print(".");
-        Utilidades.esperar(1);
+        Utilidades.esperar(500);
         System.out.print(".");
-        Utilidades.esperar(1);
+        Utilidades.esperar(500);
     }
     }
