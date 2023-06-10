@@ -54,9 +54,8 @@ public  class Menu{
 
                 case "4":
                     Utilidades.limpiarConsola(); //Limpiamos la consola
-                    Administracion.verInformacion(); //Llamamos al método especifico de la Administración
-                    System.out.println("Presione 'Enter' para volver al menu..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
-                    Utilidades.lector.nextLine();
+                    Administracion.pedirContraseña(); //Llamamos al método especifico de la Administración
+                    
 
                     break;
         

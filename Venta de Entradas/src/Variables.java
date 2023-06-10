@@ -1,5 +1,6 @@
 public class Variables {
     
+    public static final int cantidadInicialEntradas = 100;
     public static int cantidadEntradasDisponibles = 100; //La cantidad de entradas disponibles que el usuario puede comprar.
     public static int precioEntrada = 500 ; //El precio de las entradas.
 

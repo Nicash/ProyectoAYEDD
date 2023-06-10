@@ -137,6 +137,15 @@ public class Cliente{
         }
     }
 
+    public static void imprimirDatos(int indice) {
+                     
+                System.out.println(Variables.Fuente.SUBRAYADO + "Nombre:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].nombre);        
+                System.out.println(Variables.Fuente.SUBRAYADO + "Apellido:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].apellido);
+                System.out.println(Variables.Fuente.SUBRAYADO + "eMail:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].email);
+                System.out.println(Variables.Fuente.SUBRAYADO + "Telefono:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].telefono);
+                System.out.println("");
+    }
+
     //Con este Metodo vamos a poder ir agregando cada entrada que compre el Usuario al array de entradas compradas por el mismo
     public static void agregarBoleto(String dni, int fila, int columna) {
 

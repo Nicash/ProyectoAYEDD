@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+
 public class Comprar{
     
     public static int cantidadEntradasComprar = 0; //La cantidad de entradas que va a querer comprar el usuario.
@@ -16,12 +18,15 @@ public class Comprar{
         
         Utilidades.limpiarConsola(); //Limpiamos la consola
         Estadio.dibujarEstadio(); //Antes de elegir cuantas entradas quiere comprar dibujamos el estadio y mostramos la cantidad disponible
-    
+        
+
         do { //Este bucle se va a repetir hasta que el usuario ingrese un numero valido (no negativo, ni mayor al numero de entradas disponibles)
+            try{
             System.out.println("Bienvenido, " + Cliente.getNameByDNI(dniCompra) + "."); //Saludamos con el nombre invocando un metodo para obtener el nombre del usuario mediante el DNI
             System.out.print("Ingrese la cantidad de entradas que desea comprar: "); //Preguntamos la cantidad de entradas a comprar. El usuario debe ingresar la cantidad.
 
             cantidadEntradasComprar = Utilidades.lector.nextInt();
+
             Utilidades.lector.nextLine(); //Salto de linea para q no me de error luego al leer el String
 
             if (cantidadEntradasComprar > Variables.cantidadEntradasDisponibles) { //Comprobamos que el numero ingresado no sea mayor al numero de entradas disponibles
@@ -34,9 +39,13 @@ public class Comprar{
             }
 
 
-        } while (cantidadEntradasComprar <= 0 || cantidadEntradasComprar > Variables.cantidadEntradasDisponibles); //condicion del bucle: seguira repitiendose si el numero ingresado es negativo o cero, o si es mayor al numero de entradas disponibles
-
-        int[][] entradasCompradasArray = new int[cantidadEntradasComprar][2]; //Creamos un array para guardar las posiciones que elija en cada uno de los boletos que vaya a comprar
+        }catch(InputMismatchException e){
+            Utilidades.lector.nextLine();
+        }
+        
+    } while (cantidadEntradasComprar <= 0 || cantidadEntradasComprar > Variables.cantidadEntradasDisponibles); //condicion del bucle: seguira repitiendose si el numero ingresado es negativo o cero, o si es mayor al numero de entradas disponibles
+       
+    int[][] entradasCompradasArray = new int[cantidadEntradasComprar][2]; //Creamos un array para guardar las posiciones que elija en cada uno de los boletos que vaya a comprar
 
         // Luego de elegir la cantidad le decimos que elija la posicion de las mismas.
 
@@ -92,11 +101,12 @@ public class Comprar{
 
                 System.out.println("Boleto N°" + (i + 1) + ". Lugares guardados: Fila " + (pick_fila + 1) + " Columna " + (pick_columna + 1));
                 Estadio.estadio[pick_fila][pick_columna] = "x"; //Ponemos una x en el diagrama del Estadio para indicar que la posicion está ocupada
+                Variables.cantidadEntradasDisponibles -= 1;
                 entradasCompradasArray[i][0] = pick_fila; //Guardamos la fila elegida en el array de entradasCompradas, en la posicion de las filas (0)
                 entradasCompradasArray[i][1] = pick_columna; //Guardamos la columna elegida en el array de entradasCompradas, en la posicion de las columnas (1)
                 System.out.println(""); //Dejamos un espacio
                 
-                Utilidades.esperar(1); //Esperamos un segundo luego de mostar el mensaje de eleccion de fila y columna para que de tiempo a leer
+                Utilidades.esperar(1000); //Esperamos un segundo luego de mostar el mensaje de eleccion de fila y columna para que de tiempo a leer
                 Utilidades.limpiarConsola(); //Limpiamos la consola
                 Estadio.dibujarEstadio(); //Volvemos a dibujar el estadio
 
@@ -126,7 +136,6 @@ public class Comprar{
             System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (j + 1) + ":" + Variables.Fuente.RESET + Variables.Color.CYAN + " Fila " + (posFila+1) + " - Columna: " + (posColumna+1));
             
             Cliente.agregarBoleto(dniCompra,(posFila+1),(posColumna+1)); //con este Metodo agregamos las entradas una por una al array que posee cada usuario para tal fin
-       
         }
 
         System.out.println("-----------------------------------");

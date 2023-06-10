@@ -21,11 +21,11 @@ public class Utilidades {
     }
 
     //Con esta utilidad podemos hacer pausas en la que se muestra un mensaje por una cantidad especificada de segundos
-    public static void esperar(int segundos){
+    public static void esperar(int milisegundos){
         
         try {
 
-            Thread.sleep(segundos * 1000); // Pausa de 1 segundo (1000 milisegundos)
+            Thread.sleep(milisegundos); // Pausa de 1 segundo (1000 milisegundos)
 
         } catch (InterruptedException e) {
 
