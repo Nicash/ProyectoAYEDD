@@ -1,4 +1,12 @@
+//import java.net.SocketImpl;
+//import java.net.SocketPermission;
+//import javax.xml.transform.SourceLocator;
 import java.util.InputMismatchException;
+import java.util.Random;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+
 
 public class Comprar{
     
@@ -116,20 +124,22 @@ public class Comprar{
         }
         
         System.out.println("Elija un medio de pago");
-        System.out.println("[1]PAGO CON TARJETA |[2] PAGO CON EFECTIVO");
+        System.out.println("[1] PAGO CON TARJETA | [2] PAGO CON EFECTIVO");
             
         pago = Utilidades.lector.nextLine(); //El usuario debe ingresar el nro correspondiente a la opcion de pago
-            
+        boolean condicion = false;
+
             switch(pago){
-               
                 case "1":
                     Utilidades.limpiarConsola(); //Limpiamos la consola
-                    Comprar.verTarjeta(); //Llama al metodo especifico para la Compra con tarjeta
+                    Comprar.pagotarjeta(); //Llama al metodo especifico para la Compra con tarjeta
+                    condicion = true;
                     break;
                                 
                 case "2":
                     Utilidades.limpiarConsola(); //Limpiamos la consola
-                    //Comprar.verefectivo(); //Llama al metodo especifico para la Compra con efectivo
+                    Comprar.pagoefectivo(); //Comprar.verefectivo(); //Llama al metodo especifico para la Compra con efectivo
+                    condicion = false;
                     break;
             }
 
@@ -139,10 +149,16 @@ public class Comprar{
         System.out.println("Comprobante enviado a: " + Cliente.getEmailByDNI(dniCompra)); 
 
         //IMPRIMIMOS EL COMPROBANTE DE COMPRA
+        Date fechaHoraActual = new Date(); //llamo a la clase Date para incluirla en el comprobante
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy HH:mm");
+        String fechaHoraFormateada = formato.format(fechaHoraActual);
+        
+
         System.out.println(Variables.Color.CYAN);
         System.out.println("-----------------------------------");
         System.out.println("       COMPROBANTE DE COMPRA       ");
         System.out.println("-----------------------------------");
+        System.out.println(fechaHoraFormateada);
         System.out.println("Cliente: " + Cliente.getNameByDNI(dniCompra) + " " + Cliente.getApellidoByDNI(dniCompra));
         System.out.println("DNI: " + dniCompra);
         System.out.println("-----------------------------------");
@@ -156,24 +172,77 @@ public class Comprar{
             
             Cliente.agregarBoleto(dniCompra,(posFila+1),(posColumna+1)); //con este Metodo agregamos las entradas una por una al array que posee cada usuario para tal fin
         }
-
         System.out.println("-----------------------------------");
         System.out.println(Variables.Color.RESET);
-    }
 
-
-    public static void verTarjeta(){
-        System.out.print("Ingrese su numero de tarjeta: "); //Pedimos los numeros de la tarjeta
-        String numerodetarjeta = Utilidades.lector.nextLine();
-
-        System.out.print("Ingrese el nombre de la tarjeta: "); //Pedimos el nombre que figura en la tarjeta
-        String nombretarjeta = Utilidades.lector.nextLine();
-
-        System.out.print("Ingrese codigo de seguridad: "); //Pedimos los numeros de seguridad de la tarjeta
-        String seguridadtarjeta = Utilidades.lector.nextLine();
+        System.out.println("TOTAL: " + cantidadEntradasComprar * Variables.precioEntrada);
+        
+        if (condicion) {System.out.println("FORMA DE PAGO: TARJETA");
+        }else {
+            System.out.println("FORMA DE PAGO: EFECTIVO");}
+        }
     
-        System.out.print("Ingrese cantidad de cuotas (hasta 3 cuotas sin interes): "); //Pedimos la cantidad de cuotas
+
+
+    public static void pagotarjeta(){
+
+        System.out.println(Variables.Color.VERDE);
+        System.out.println("-----------------------------------------------------------------------");
+        System.out.println("                    INGRESE LOS DATOS DE LA TARJETA                    ");
+        System.out.println("-----------------------------------------------------------------------");
+        System.out.println(Variables.Color.RESET);
+
+        
+        do {
+            System.out.print("Numero de tarjeta: "); //Pedimos los numeros de la tarjeta
+            String numerodetarjeta = Utilidades.lector.nextLine();
+
+            if (!numerodetarjeta.matches("[0-9]+")) {
+                System.out.println("Por favor, ingrese los 16 numeros de su tarjeta sin letras ni espacios.");
+            } else if (numerodetarjeta.length() != 16) {
+                System.out.println("Por favor, ingrese los 16 numeros de su tarjeta.");
+            } else if (numerodetarjeta.contains(" ")) {
+                System.out.println("Por favor, ingrese los 16 numeros de su tarjeta sin letras ni espacios.");
+            } else {
+                break;  // Valor válido, salir del bucle
+            }
+        } while (true);
+
+        do {
+            System.out.print("Nombre de la tarjeta: "); //Pedimos el nombre que figura en la tarjeta
+            String nombretarjeta = Utilidades.lector.nextLine();
+
+            if (!nombretarjeta.matches("[a-zA-Z\\s]+")) {
+                System.out.println("Por favor, ingresar el nombre como figura en la tarjeta.");
+            } else {
+                break;  // Valor válido, salir del bucle
+            }
+        } while (true);
+
+        do {
+        System.out.print("Codigo de seguridad: "); //Pedimos los numeros de seguridad de la tarjeta
+        String seguridadtarjeta = Utilidades.lector.nextLine();
+        
+            if (!seguridadtarjeta.matches("[0-9]+")) {
+                System.out.println("Por favor, ingrese solo numeros.");
+            } else if (seguridadtarjeta.length() != 3) {
+                System.out.println("Por favor, ingrese los 3 numeros de seguridad de su tarjeta.");
+            } else {
+                break;  // Valor válido, salir del bucle
+            }
+        }while (true);
+        do {
+        System.out.print("Cantidad de cuotas (hasta 3 cuotas sin interes): "); //Pedimos la cantidad de cuotas
         String cuotas = Utilidades.lector.nextLine();
+            if (!cuotas.matches("[0-9]+")) {
+                System.out.println("Por favor, ingrese el numero de cuotas.");
+            } else if (cuotas.length() == 0) {
+                System.out.println("Por favor, ingrese un numero mayor a 0.");
+            } else {
+                break;  // Valor válido, salir del bucle
+            }
+        }while (true);
+
         
         Utilidades.limpiarConsola(); //Limpiamos la consola
 
@@ -183,5 +252,56 @@ public class Comprar{
         Utilidades.esperar(500);
         System.out.print(".");
         Utilidades.esperar(500);
+    
+        Utilidades.limpiarConsola();
+
+        System.out.print(Variables.Color.VERDE + "COMPRA REALIZADA EXITOSAMENTE" + Variables.Fuente.RESET);
+
+        Utilidades.esperar(2000);
+
     }
+
+    public static void pagoefectivo(){
+        String codigo = generarCodigoAlfanumerico(8);
+        System.out.println("Código generado: " + Variables.Color.MAGENTA + codigo + Variables.Fuente.RESET);
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+
+        Utilidades.limpiarConsola();
+
+        System.out.print("Procesando reserva.");
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+    
+        Utilidades.limpiarConsola();
+
+        System.out.print(Variables.Color.VERDE + "RESERVA REALIZADA EXITOSAMENTE. VÁLIDA HASTA 20 min PREVIO AL INICIO DEL SHOW. " + Variables.Fuente.RESET);
+
+        Utilidades.esperar(2000);
     }
+
+    public static String generarCodigoAlfanumerico(int longitud) {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        StringBuilder codigo = new StringBuilder();
+
+        for (int i = 0; i < longitud; i++) {
+            int indice = random.nextInt(caracteres.length());
+            codigo.append(caracteres.charAt(indice));
+        }
+
+        return codigo.toString();
+    }
+    
+}
+
+
+    
