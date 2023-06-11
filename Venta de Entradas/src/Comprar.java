@@ -1,7 +1,3 @@
-//import java.net.SocketImpl;
-//import java.net.SocketPermission;
-//import javax.xml.transform.SourceLocator;
-import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -17,6 +13,11 @@ public class Comprar{
     public static String codigoPago;
 
     public static void compraEntradas(){
+        System.out.println(Variables.Color.VERDE + "---------------------------------------------------------------------");
+        System.out.println("                         Comprar Entradas                              ");
+        System.out.println("  Para realizar la compra deberá poseer una cuenta asociada a su DNI");
+        System.out.println("---------------------------------------------------------------------" + Variables.Fuente.RESET);
+
         System.out.print("Ingrese su número de DNI: "); //Pedimos el DNI al usuario
         String dniCompra = Utilidades.lector.nextLine();
 
@@ -29,7 +30,7 @@ public class Comprar{
         Utilidades.limpiarConsola(); //Limpiamos la consola
         Estadio.dibujarEstadio(); //Antes de elegir cuantas entradas quiere comprar dibujamos el estadio y mostramos la cantidad disponible
         
-        System.out.println("¡Bienvenido, " + Cliente.getNameByDNI(dniCompra) + "!"); //Saludamos con el nombre invocando un metodo para obtener el nombre del usuario mediante el DNI
+        System.out.println("¡Bienvenido, " + Variables.Color.MAGENTA + Cliente.getNameByDNI(dniCompra) + Variables.Color.RESET + "!"); //Saludamos con el nombre invocando un metodo para obtener el nombre del usuario mediante el DNI
 
         do { //Este bucle se va a repetir hasta que el usuario ingrese un numero valido (no negativo, ni mayor al numero de entradas disponibles)
             
@@ -164,6 +165,7 @@ public class Comprar{
 
         //Una vez terminado el bucle del total de entradas a comprar limpiamos la consola y generamos el comprobante con los datos de la compra
         //Utilidades.limpiarConsola();
+        System.out.println("");
         System.out.println("¡Muchas gracias por su compra!");
         System.out.println("Comprobante enviado a: " + Cliente.getEmailByDNI(dniCompra)); 
 
@@ -199,11 +201,10 @@ public class Comprar{
         }else {
             System.out.println("FORMA DE PAGO: " + Variables.Color.VERDE + "EFECTIVO" + Variables.Color.RESET);
             System.out.println(Variables.Color.CYAN +"TOTAL: $" + cantidadEntradasComprar * Variables.precioEntrada);           
-            System.out.println(Variables.Color.CYAN + "CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigoPago + Variables.Color.RESET);
             System.out.println("");
-
-            System.out.println(Variables.Color.MAGENTA + "RESERVA REALIZADA EXITOSAMENTE. VALIDA HASTA 20 min PREVIO AL INICIO DEL SHOW" + Variables.Color.RESET);
-            System.out.println("");
+            System.out.println(Variables.Color.CYAN + "CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigoPago);
+            System.out.println(Variables.Color.CYAN + "(RESERVA VALIDA HASTA 20 min \nPREVIO AL INICIO DEL SHOW)");
+            
         }
 
         System.out.println("-----------------------------------" + Variables.Color.RESET);
@@ -285,7 +286,6 @@ public class Comprar{
         System.out.println(Variables.Color.VERDE + "COMPRA REALIZADA EXITOSAMENTE");
         Utilidades.esperar(2000);
         System.out.println("-----------------------------------------------------------------------" + Variables.Fuente.RESET);
-        System.out.println("");
 
     }
 
@@ -312,6 +312,7 @@ public class Comprar{
         Utilidades.esperar(500);
         System.out.println(".");
         Utilidades.esperar(500);
+        System.out.println(Variables.Color.VERDE + "RESERVA REALIZADA EXITOSAMENTE" + Variables.Color.RESET);
         System.out.println("Código generado: " + Variables.Color.MAGENTA + codigoPago + Variables.Fuente.RESET);
         Utilidades.esperar(2000);
     }
