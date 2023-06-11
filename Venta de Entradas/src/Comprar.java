@@ -130,23 +130,37 @@ public class Comprar{
         }
         System.out.println(Variables.Fuente.SUBRAYADO + "Total a pagar:" + Variables.Fuente.RESET + Variables.Color.VERDE + " $" + cantidadEntradasComprar*Variables.precioEntrada + Variables.Color.RESET);
         System.out.println(" ");
+ 
+
+
         System.out.println(Variables.Fuente.SUBRAYADO + "Formas de pago:" + Variables.Fuente.RESET);
         System.out.println("[1] PAGO CON TARJETA | [2] PAGO CON EFECTIVO");
-        System.out.print("Elija un medio de pago: ");  
-        pago = Utilidades.lector.nextLine(); //El usuario debe ingresar el nro correspondiente a la opcion de pago
-        boolean condicion = false;
 
+        boolean condicion = false;
+        boolean comprobante = false;
+        do {
+        System.out.print("Elija un medio de pago: "); 
+        pago = Utilidades.lector.nextLine(); //El usuario debe ingresar el nro correspondiente a la opcion de pago
             switch(pago){
                 case "1":
                     Comprar.pagotarjeta(); //Llama al metodo especifico para la Compra con tarjeta
                     condicion = true;
+                    comprobante = true;
                     break;
                                 
                 case "2":
-                    Comprar.pagoefectivo(); // //Llama al metodo especifico para la Compra con efectivo
-                    condicion = false;
+                    Comprar.pagoefectivo(); //Llama al metodo especifico para la Compra con efectivo
+                    condicion = true;
+                    comprobante = false;
+                    break;
+
+                default:
+                    System.out.println("");
+                    System.out.println(Variables.Color.ROJO + "Opción inválida. Por favor, seleccione una opción válida." + Variables.Color.RESET);
+                    System.out.println("");
                     break;
             }
+        }while (!condicion);
 
         //Una vez terminado el bucle del total de entradas a comprar limpiamos la consola y generamos el comprobante con los datos de la compra
         //Utilidades.limpiarConsola();
@@ -179,14 +193,18 @@ public class Comprar{
         
         System.out.println("-----------------------------------");
         
-        if (condicion){
+        if (comprobante){
             System.out.println("FORMA DE PAGO: "+ Variables.Color.VERDE + "TARJETA" + Variables.Color.RESET);
+            System.out.println(Variables.Color.CYAN +"TOTAL: $" + cantidadEntradasComprar * Variables.precioEntrada); 
         }else {
-            System.out.println("FORMA DE PAGO: " + Variables.Color.MAGENTA + "EFECTIVO" + Variables.Color.RESET);
-            
+            System.out.println("FORMA DE PAGO: " + Variables.Color.VERDE + "EFECTIVO" + Variables.Color.RESET);
+            System.out.println(Variables.Color.CYAN +"TOTAL: $" + cantidadEntradasComprar * Variables.precioEntrada);           
             System.out.println(Variables.Color.CYAN + "CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigoPago + Variables.Color.RESET);
+            System.out.println("");
+
+            System.out.println(Variables.Color.MAGENTA + "RESERVA REALIZADA EXITOSAMENTE. VALIDA HASTA 20 min PREVIO AL INICIO DEL SHOW" + Variables.Color.RESET);
+            System.out.println("");
         }
-        System.out.println(Variables.Color.CYAN +"TOTAL: $" + cantidadEntradasComprar * Variables.precioEntrada);
 
         System.out.println("-----------------------------------" + Variables.Color.RESET);
         System.out.println("");
@@ -295,9 +313,6 @@ public class Comprar{
         System.out.println(".");
         Utilidades.esperar(500);
         System.out.println("Código generado: " + Variables.Color.MAGENTA + codigoPago + Variables.Fuente.RESET);
-
-        System.out.println(Variables.Color.VERDE + "RESERVA REALIZADA EXITOSAMENTE. VÁLIDA HASTA 20 min PREVIO AL INICIO DEL SHOW. " + Variables.Fuente.RESET);
-
         Utilidades.esperar(2000);
     }
 
