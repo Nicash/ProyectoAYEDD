@@ -4,6 +4,7 @@
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Date;
+import java.io.ObjectInputStream.GetField;
 import java.text.SimpleDateFormat;
 
 
@@ -14,6 +15,7 @@ public class Comprar{
     public static String emailComprador = ""; //El email del comprador, donde se enviará el comprobante de compra.
     public static long numeroCelularComprador = 0; //El nro de telefono del comprador, donde se enviará el comprobante de compra.
     public static String pago; //variable de opcion del Switch
+
 
     public static void compraEntradas(){
         System.out.print("Ingrese su numero de DNI: "); //Pedimos el DNI al usuario
@@ -177,12 +179,16 @@ public class Comprar{
 
         System.out.println("TOTAL: " + cantidadEntradasComprar * Variables.precioEntrada);
         
-        if (condicion) {System.out.println("FORMA DE PAGO: TARJETA");
+        if (condicion){
+            System.out.println("FORMA DE PAGO: "+ Variables.Color.VERDE + "TARJETA" + Variables.Color.RESET);
         }else {
-            System.out.println("FORMA DE PAGO: EFECTIVO");}
+            System.out.println("FORMA DE PAGO: " + Variables.Color.MAGENTA + "EFECTIVO" + Variables.Color.RESET);
+            System.out.println("CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigo + Variables.Color.RESET);
         }
+        
+        System.out.println("-----------------------------------");
+    }
     
-
 
     public static void pagotarjeta(){
 
@@ -236,7 +242,7 @@ public class Comprar{
         String cuotas = Utilidades.lector.nextLine();
             if (!cuotas.matches("[0-9]+")) {
                 System.out.println("Por favor, ingrese el numero de cuotas.");
-            } else if (cuotas.length() == 0) {
+            } else if (cuotas.length() <= 0) {
                 System.out.println("Por favor, ingrese un numero mayor a 0.");
             } else {
                 break;  // Valor válido, salir del bucle
@@ -260,6 +266,7 @@ public class Comprar{
         Utilidades.esperar(2000);
 
     }
+
 
     public static void pagoefectivo(){
         String codigo = generarCodigoAlfanumerico(8);
