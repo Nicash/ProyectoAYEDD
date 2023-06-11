@@ -171,8 +171,7 @@ public class Cliente{
 
                         if (telefono.matches("[0-9]+")) {
                             if(telefono.length() >= 10){
-                            System.out.println("");
-
+                            
                             telefonoCorrecto = 1;
                             }
                             else{
@@ -187,10 +186,19 @@ public class Cliente{
 
                     } while (telefonoCorrecto != 1);
 
-                Variables.arrayClientes[i] = new Cliente(dni, nombre, apellido, email, telefono);
-
-                System.out.println("Cuenta creada con exito.");
-
+                    Variables.arrayClientes[i] = new Cliente(dni, nombre, apellido, email, telefono);
+                    
+                    System.out.print("Creando cuenta");
+                    Utilidades.esperar(500);
+                    System.out.print(".");
+                    Utilidades.esperar(500);
+                    System.out.print(".");
+                    Utilidades.esperar(500);
+                    System.out.print(".");
+                    Utilidades.esperar(500);
+                    System.out.println(Variables.Color.VERDE + " CUENTA CREADA CON ÉXITO." + Variables.Color.RESET);
+                    Utilidades.esperar(2000);
+                    
                 break; // Sal del bucle una vez que se haya agregado el cliente
             }
         }
