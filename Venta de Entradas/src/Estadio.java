@@ -52,7 +52,7 @@ public class Estadio {
         System.out.println("        ASIENTOS DISPONIBLES       ");
         System.out.println("                (" + Variables.cantidadEntradasDisponibles + ")");
         System.out.println("         Las posiciones con        ");
-        System.out.println("      una '" + Variables.Color.ROJO + "X" + Variables.Color.RESET + "' estan ocupadas.      ");
+        System.out.println("      una '" + Variables.Color.ROJO + "X" + Variables.Color.RESET + "' están ocupadas.      ");
         System.out.println("-----------------------------------");
         
         System.out.print(Variables.Fuente.SUBRAYADO +  "   | ");

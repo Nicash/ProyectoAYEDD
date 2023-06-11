@@ -125,7 +125,7 @@ public class Cliente{
                 System.out.print(Variables.Fuente.SUBRAYADO + "eMail:" + Variables.Fuente.RESET + " ");
                 String email = Utilidades.lector.nextLine();
 
-                System.out.print(Variables.Fuente.SUBRAYADO + "Telefono:" + Variables.Fuente.RESET + " ");
+                System.out.print(Variables.Fuente.SUBRAYADO + "Teléfono:" + Variables.Fuente.RESET + " ");
                 String telefono = Utilidades.lector.nextLine();
 
                 Variables.arrayClientes[i] = new Cliente(dni, nombre, apellido, email, telefono);
@@ -142,7 +142,7 @@ public class Cliente{
                 System.out.println(Variables.Fuente.SUBRAYADO + "Nombre:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].nombre);        
                 System.out.println(Variables.Fuente.SUBRAYADO + "Apellido:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].apellido);
                 System.out.println(Variables.Fuente.SUBRAYADO + "eMail:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].email);
-                System.out.println(Variables.Fuente.SUBRAYADO + "Telefono:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].telefono);
+                System.out.println(Variables.Fuente.SUBRAYADO + "Teléfono:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].telefono);
                 System.out.println("");
     }
 
@@ -161,7 +161,7 @@ public class Cliente{
     //Metodo para ver el total de entradas compradas por el usuario
     public static void verEntradas(){
 
-        System.out.print("Ingrese su numero de DNI: ");
+        System.out.print("Ingrese su número de DNI: ");
         String dni = Utilidades.lector.nextLine();
         System.out.println("");
 

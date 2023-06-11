@@ -21,7 +21,7 @@ public class Administracion {
         }
         }
        if (intentos>=3) {
-            System.out.println("Has excedido el numero maximo de intentos.");
+            System.out.println("Has excedido el número máximo de intentos.");
             intentos = 0;
        }
 
@@ -34,14 +34,14 @@ public class Administracion {
         while (menuA){
         Utilidades.limpiarConsola();
 
-        System.out.println(Variables.Color.VERDE + "                         Administracion                              " + Variables.Color.RESET);
+        System.out.println(Variables.Color.VERDE + "                         Administración                              " + Variables.Color.RESET);
 
         System.out.println("---------------------------------------------------------------------");
-        System.out.println("  [1] Informacion de ventas | [2] Listado de clientes | [3] Salir ");
+        System.out.println("  [1] Información de ventas | [2] Listado de clientes | [3] Salir ");
         System.out.println("---------------------------------------------------------------------");
         System.out.println("");
         
-        System.out.print("- Elige una opcion: ");
+        System.out.print("- Elige una opción: ");
 
         
             String opcion = Utilidades.lector.nextLine();
@@ -53,13 +53,13 @@ public class Administracion {
                 Variables.cantidadEntradasVendidas = Variables.cantidadInicialEntradas - Variables.cantidadEntradasDisponibles;
                 
                 Utilidades.limpiarConsola();
-                System.out.println( Variables.Fuente.SUBRAYADO + "Informacion de ventas:" + Variables.Fuente.RESET);
+                System.out.println( Variables.Fuente.SUBRAYADO + "Información de ventas:" + Variables.Fuente.RESET);
                 System.out.println("Cantidad entradas vendidas: " + (Variables.cantidadEntradasVendidas));
                 System.out.println("Cantidad entradas disponibles: " + (Variables.cantidadEntradasDisponibles));
                 System.out.println("Dinero recaudado: $" + (Variables.cantidadEntradasVendidas * Variables.precioEntrada));
                 System.out.println("");
 
-                System.out.println("Presione 'Enter' para volver al menu..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
+                System.out.println("Presione 'Enter' para volver al menú..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
                 Utilidades.lector.nextLine();
                 Utilidades.limpiarConsola();
             break;
@@ -75,7 +75,7 @@ public class Administracion {
                 }
             }
                 System.out.println("");
-                System.out.println("Presione 'Enter' para volver al menu..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
+                System.out.println("Presione 'Enter' para volver al menú..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
                 Utilidades.lector.nextLine();
                 Utilidades.limpiarConsola();
             break;

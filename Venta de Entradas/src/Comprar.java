@@ -4,7 +4,6 @@
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Date;
-import java.io.ObjectInputStream.GetField;
 import java.text.SimpleDateFormat;
 
 
@@ -18,7 +17,7 @@ public class Comprar{
     public static String codigoPago;
 
     public static void compraEntradas(){
-        System.out.print("Ingrese su numero de DNI: "); //Pedimos el DNI al usuario
+        System.out.print("Ingrese su número de DNI: "); //Pedimos el DNI al usuario
         String dniCompra = Utilidades.lector.nextLine();
 
         if(!Cliente.existeCliente(dniCompra)){ //Llamamos al metodo que checkea mediante el DNI si el Cliente existe
@@ -30,10 +29,10 @@ public class Comprar{
         Utilidades.limpiarConsola(); //Limpiamos la consola
         Estadio.dibujarEstadio(); //Antes de elegir cuantas entradas quiere comprar dibujamos el estadio y mostramos la cantidad disponible
         
+        System.out.println("¡Bienvenido, " + Cliente.getNameByDNI(dniCompra) + "!"); //Saludamos con el nombre invocando un metodo para obtener el nombre del usuario mediante el DNI
 
         do { //Este bucle se va a repetir hasta que el usuario ingrese un numero valido (no negativo, ni mayor al numero de entradas disponibles)
-            try{
-            System.out.println("Bienvenido, " + Cliente.getNameByDNI(dniCompra) + "."); //Saludamos con el nombre invocando un metodo para obtener el nombre del usuario mediante el DNI
+            
             System.out.print("Ingrese la cantidad de entradas que desea comprar: "); //Preguntamos la cantidad de entradas a comprar. El usuario debe ingresar la cantidad.
 
             cantidadEntradasComprar = Utilidades.lector.nextInt();
@@ -48,11 +47,6 @@ public class Comprar{
 
                 System.out.println("La cantidad ingresada es incorrecta, intentelo de nuevo.");
             }
-
-
-        }catch(InputMismatchException e){
-            Utilidades.lector.nextLine();
-        }
         
     } while (cantidadEntradasComprar <= 0 || cantidadEntradasComprar > Variables.cantidadEntradasDisponibles); //condicion del bucle: seguira repitiendose si el numero ingresado es negativo o cero, o si es mayor al numero de entradas disponibles
        
@@ -124,30 +118,39 @@ public class Comprar{
             }
             
         }
-        
-        System.out.println("Elija un medio de pago");
-        System.out.println("[1] PAGO CON TARJETA | [2] PAGO CON EFECTIVO");
+        System.out.println("Su selección se ha guardado correctamente:");
+        for(int j = 0; j < cantidadEntradasComprar; j++){
+
+            int posFila = entradasCompradasArray[j][0];
+            int posColumna = entradasCompradasArray[j][1];
             
+            System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (j + 1) + ":" + Variables.Fuente.RESET + " Fila " + (posFila+1) + " - Columna: " + (posColumna+1));
+            
+            Cliente.agregarBoleto(dniCompra,(posFila+1),(posColumna+1)); //con este Metodo agregamos las entradas una por una al array que posee cada usuario para tal fin
+        }
+        System.out.println(Variables.Fuente.SUBRAYADO + "Total a pagar:" + Variables.Fuente.RESET + Variables.Color.VERDE + " $" + cantidadEntradasComprar*Variables.precioEntrada + Variables.Color.RESET);
+        System.out.println(" ");
+        System.out.println(Variables.Fuente.SUBRAYADO + "Formas de pago:" + Variables.Fuente.RESET);
+        System.out.println("[1] PAGO CON TARJETA | [2] PAGO CON EFECTIVO");
+        System.out.print("Elija un medio de pago: ");  
         pago = Utilidades.lector.nextLine(); //El usuario debe ingresar el nro correspondiente a la opcion de pago
         boolean condicion = false;
 
             switch(pago){
                 case "1":
-                    Utilidades.limpiarConsola(); //Limpiamos la consola
                     Comprar.pagotarjeta(); //Llama al metodo especifico para la Compra con tarjeta
                     condicion = true;
                     break;
                                 
                 case "2":
-                    Utilidades.limpiarConsola(); //Limpiamos la consola
                     Comprar.pagoefectivo(); // //Llama al metodo especifico para la Compra con efectivo
                     condicion = false;
                     break;
             }
 
         //Una vez terminado el bucle del total de entradas a comprar limpiamos la consola y generamos el comprobante con los datos de la compra
-        Utilidades.limpiarConsola();
-        System.out.println("Muchas gracias por su compra.");
+        //Utilidades.limpiarConsola();
+        System.out.println("¡Muchas gracias por su compra!");
         System.out.println("Comprobante enviado a: " + Cliente.getEmailByDNI(dniCompra)); 
 
         //IMPRIMIMOS EL COMPROBANTE DE COMPRA
@@ -160,7 +163,7 @@ public class Comprar{
         System.out.println("-----------------------------------");
         System.out.println("       COMPROBANTE DE COMPRA       ");
         System.out.println("-----------------------------------");
-        System.out.println(fechaHoraFormateada);
+        System.out.println("Fecha y Hora: " + fechaHoraFormateada);
         System.out.println("Cliente: " + Cliente.getNameByDNI(dniCompra) + " " + Cliente.getApellidoByDNI(dniCompra));
         System.out.println("DNI: " + dniCompra);
         System.out.println("-----------------------------------");
@@ -172,29 +175,26 @@ public class Comprar{
             
             System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (j + 1) + ":" + Variables.Fuente.RESET + Variables.Color.CYAN + " Fila " + (posFila+1) + " - Columna: " + (posColumna+1));
             
-            Cliente.agregarBoleto(dniCompra,(posFila+1),(posColumna+1)); //con este Metodo agregamos las entradas una por una al array que posee cada usuario para tal fin
         }
         
         System.out.println("-----------------------------------");
-        
-        System.out.println(Variables.Color.RESET);
-
-        System.out.println("TOTAL: " + cantidadEntradasComprar * Variables.precioEntrada);
         
         if (condicion){
             System.out.println("FORMA DE PAGO: "+ Variables.Color.VERDE + "TARJETA" + Variables.Color.RESET);
         }else {
             System.out.println("FORMA DE PAGO: " + Variables.Color.MAGENTA + "EFECTIVO" + Variables.Color.RESET);
             
-            System.out.println("CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigoPago + Variables.Color.RESET);
+            System.out.println(Variables.Color.CYAN + "CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigoPago + Variables.Color.RESET);
         }
-        
-        System.out.println("-----------------------------------");
+        System.out.println(Variables.Color.CYAN +"TOTAL: $" + cantidadEntradasComprar * Variables.precioEntrada);
+
+        System.out.println("-----------------------------------" + Variables.Color.RESET);
+        System.out.println("");
     }
     
 
     public static void pagotarjeta(){
-
+        
         System.out.println(Variables.Color.VERDE);
         System.out.println("-----------------------------------------------------------------------");
         System.out.println("                    INGRESE LOS DATOS DE LA TARJETA                    ");
@@ -229,13 +229,13 @@ public class Comprar{
         } while (true);
 
         do {
-        System.out.print("Codigo de seguridad: "); //Pedimos los numeros de seguridad de la tarjeta
+        System.out.print("Código de seguridad: "); //Pedimos los numeros de seguridad de la tarjeta
         String seguridadtarjeta = Utilidades.lector.nextLine();
         
             if (!seguridadtarjeta.matches("[0-9]+")) {
                 System.out.println("Por favor, ingrese solo numeros.");
             } else if (seguridadtarjeta.length() != 3) {
-                System.out.println("Por favor, ingrese los 3 numeros de seguridad de su tarjeta.");
+                System.out.println("Por favor, ingrese los 3 números de seguridad de su tarjeta.");
             } else {
                 break;  // Valor válido, salir del bucle
             }
@@ -244,29 +244,30 @@ public class Comprar{
         System.out.print("Cantidad de cuotas (hasta 3 cuotas sin interes): "); //Pedimos la cantidad de cuotas
         String cuotas = Utilidades.lector.nextLine();
             if (!cuotas.matches("[0-9]+")) {
-                System.out.println("Por favor, ingrese el numero de cuotas.");
+                System.out.println("Por favor, ingrese el número de cuotas.");
             } else if (cuotas.length() <= 0) {
-                System.out.println("Por favor, ingrese un numero mayor a 0.");
+                System.out.println("Por favor, ingrese un número mayor a 0.");
             } else {
                 break;  // Valor válido, salir del bucle
             }
         }while (true);
 
         
-        Utilidades.limpiarConsola(); //Limpiamos la consola
 
-        System.out.print("Procesando compra.");
+        System.out.print("Procesando compra");
+        Utilidades.esperar(500);
+        System.out.print(".");
         Utilidades.esperar(500);
         System.out.print(".");
         Utilidades.esperar(500);
         System.out.print(".");
         Utilidades.esperar(500);
     
-        Utilidades.limpiarConsola();
 
-        System.out.print(Variables.Color.VERDE + "COMPRA REALIZADA EXITOSAMENTE" + Variables.Fuente.RESET);
-
+        System.out.println(Variables.Color.VERDE + "COMPRA REALIZADA EXITOSAMENTE");
         Utilidades.esperar(2000);
+        System.out.println("-----------------------------------------------------------------------" + Variables.Fuente.RESET);
+        System.out.println("");
 
     }
 
@@ -274,27 +275,28 @@ public class Comprar{
     static void pagoefectivo(){
 
         codigoPago = generarCodigoAlfanumerico(8);
+        
+        System.out.print("Procesando reserva");
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+        System.out.println(".");
+
+        Utilidades.esperar(500);
+
+        System.out.print("Generando cupón de pago");
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+        System.out.print(".");
+        Utilidades.esperar(500);
+        System.out.println(".");
+        Utilidades.esperar(500);
         System.out.println("Código generado: " + Variables.Color.MAGENTA + codigoPago + Variables.Fuente.RESET);
-        Utilidades.esperar(500);
-        System.out.print(".");
-        Utilidades.esperar(500);
-        System.out.print(".");
-        Utilidades.esperar(500);
-        System.out.print(".");
-        Utilidades.esperar(500);
 
-        //Utilidades.limpiarConsola();
-
-        System.out.print("Procesando reserva.");
-        Utilidades.esperar(500);
-        System.out.print(".");
-        Utilidades.esperar(500);
-        System.out.print(".");
-        Utilidades.esperar(500);
-    
-        //Utilidades.limpiarConsola();
-
-        System.out.print(Variables.Color.VERDE + "RESERVA REALIZADA EXITOSAMENTE. VÁLIDA HASTA 20 min PREVIO AL INICIO DEL SHOW. " + Variables.Fuente.RESET);
+        System.out.println(Variables.Color.VERDE + "RESERVA REALIZADA EXITOSAMENTE. VÁLIDA HASTA 20 min PREVIO AL INICIO DEL SHOW. " + Variables.Fuente.RESET);
 
         Utilidades.esperar(2000);
     }

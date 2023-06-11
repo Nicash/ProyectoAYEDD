@@ -4,7 +4,7 @@ public class Variables {
     public static int cantidadEntradasDisponibles = 100; //La cantidad de entradas disponibles que el usuario puede comprar.
     public static int precioEntrada = 500 ; //El precio de las entradas.
 
-    public static String nombreBanda = "Los Garcia"; //Nombre de la banda
+    public static String nombreBanda = "Los García"; //Nombre de la banda
     public static String fechaConcierto = "09/07/2023"; //La fecha en que se realizará el concierto.
     public static String horaConcierto = "20:00"; //La hora en la que se realizará el concierto.
     public static String lugarConcierto = "Teatro Ideal"; //El lugar donde se realizará el concierto.
