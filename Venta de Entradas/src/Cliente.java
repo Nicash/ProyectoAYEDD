@@ -122,11 +122,70 @@ public class Cliente{
                 System.out.print(Variables.Fuente.SUBRAYADO + "Apellido:" + Variables.Fuente.RESET + " ");
                 String apellido = Utilidades.lector.nextLine();
 
-                System.out.print(Variables.Fuente.SUBRAYADO + "eMail:" + Variables.Fuente.RESET + " ");
-                String email = Utilidades.lector.nextLine();
+                int emailCorrecto = 0;
+                String email = "";
 
-                System.out.print(Variables.Fuente.SUBRAYADO + "Teléfono:" + Variables.Fuente.RESET + " ");
-                String telefono = Utilidades.lector.nextLine();
+                do {
+                        System.out.print(Variables.Fuente.SUBRAYADO + "eMail:" + Variables.Fuente.RESET + " ");
+                        email = Utilidades.lector.nextLine();
+
+                        int arroba = 0;
+
+                        int punto = 0;
+
+                        for (int j = 0; j < email.length(); j++) {
+
+                            if (email.charAt(j) == '@') {
+
+                                arroba++;
+
+                            }
+                            else if (email.charAt(j) == '.') {
+
+                                punto++;
+                            }
+                        }
+
+                        if (arroba == 1 && punto > 0) {
+
+                            emailCorrecto = 1;
+
+                        }
+                        else {
+
+                            System.out.println("Su dirección de correo electrónico no es válida.");
+
+                            System.out.println("Por favor, intente ingresar su correo electrónico de nuevo.");
+
+                            System.out.println("");
+
+                        }
+
+                } while (emailCorrecto != 1);
+
+                String telefono = "";
+                int telefonoCorrecto = 0;
+                do {
+                        System.out.print(Variables.Fuente.SUBRAYADO + "Teléfono:" + Variables.Fuente.RESET + " ");
+                        telefono = Utilidades.lector.nextLine();
+
+                        if (telefono.matches("[0-9]+")) {
+                            if(telefono.length() >= 10){
+                            System.out.println("");
+
+                            telefonoCorrecto = 1;
+                            }
+                            else{
+                                System.out.println("El teléfono debe ser de al menos 10 números. Intente nuevamente.");
+                            }
+
+                        } else {
+
+                            System.out.println("Teléfono incorrecto, por favor, intentelo de nuevo.");
+
+                        }
+
+                    } while (telefonoCorrecto != 1);
 
                 Variables.arrayClientes[i] = new Cliente(dni, nombre, apellido, email, telefono);
 
