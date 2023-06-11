@@ -227,7 +227,9 @@ public class Cliente{
 
     //Metodo para ver el total de entradas compradas por el usuario
     public static void verEntradas(){
-
+        System.out.println(Variables.Color.VERDE + "---------------------------------------------------------------------");
+        System.out.println("                         VER MIS ENTRADAS                              ");
+        System.out.println("---------------------------------------------------------------------" + Variables.Fuente.RESET);
         System.out.print("Ingrese su número de DNI: ");
         String dni = Utilidades.lector.nextLine();
         System.out.println("");

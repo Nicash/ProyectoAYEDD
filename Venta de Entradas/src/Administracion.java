@@ -1,7 +1,10 @@
 public class Administracion {
     
     public static void pedirContraseña(){
-
+        System.out.println(Variables.Color.ROJO + "---------------------------------------------------------------------");
+        System.out.println("            Acceso Restringido a Usuarios Autorizados                 ");
+        System.out.println("     Si ingresó por error escriba 'SALIR' en lugar de la contraseña   ");
+        System.out.println("---------------------------------------------------------------------" + Variables.Fuente.RESET);
         String contraseña ="utn2023";
         String claveIngresada;
         int intentos = 0;
@@ -13,6 +16,17 @@ public class Administracion {
         
         if(contraseña.equals(claveIngresada)){
             menuAdmin();
+            break;
+        }
+        else if(claveIngresada.equalsIgnoreCase("SALIR")){
+            System.out.print("Volviendo al menú principal");
+            Utilidades.esperar(500);
+            System.out.print(".");
+            Utilidades.esperar(500);
+            System.out.print(".");
+            Utilidades.esperar(500);
+            System.out.print(".");
+            Utilidades.esperar(500);
             break;
         }
         else{
