@@ -15,7 +15,7 @@ public class Comprar{
     public static String emailComprador = ""; //El email del comprador, donde se enviará el comprobante de compra.
     public static long numeroCelularComprador = 0; //El nro de telefono del comprador, donde se enviará el comprobante de compra.
     public static String pago; //variable de opcion del Switch
-
+    public static String codigoPago;
 
     public static void compraEntradas(){
         System.out.print("Ingrese su numero de DNI: "); //Pedimos el DNI al usuario
@@ -140,7 +140,7 @@ public class Comprar{
                                 
                 case "2":
                     Utilidades.limpiarConsola(); //Limpiamos la consola
-                    Comprar.pagoefectivo(); //Comprar.verefectivo(); //Llama al metodo especifico para la Compra con efectivo
+                    Comprar.pagoefectivo(); // //Llama al metodo especifico para la Compra con efectivo
                     condicion = false;
                     break;
             }
@@ -174,7 +174,9 @@ public class Comprar{
             
             Cliente.agregarBoleto(dniCompra,(posFila+1),(posColumna+1)); //con este Metodo agregamos las entradas una por una al array que posee cada usuario para tal fin
         }
+        
         System.out.println("-----------------------------------");
+        
         System.out.println(Variables.Color.RESET);
 
         System.out.println("TOTAL: " + cantidadEntradasComprar * Variables.precioEntrada);
@@ -183,7 +185,8 @@ public class Comprar{
             System.out.println("FORMA DE PAGO: "+ Variables.Color.VERDE + "TARJETA" + Variables.Color.RESET);
         }else {
             System.out.println("FORMA DE PAGO: " + Variables.Color.MAGENTA + "EFECTIVO" + Variables.Color.RESET);
-            System.out.println("CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigo + Variables.Color.RESET);
+            
+            System.out.println("CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigoPago + Variables.Color.RESET);
         }
         
         System.out.println("-----------------------------------");
@@ -268,9 +271,10 @@ public class Comprar{
     }
 
 
-    public static void pagoefectivo(){
-        String codigo = generarCodigoAlfanumerico(8);
-        System.out.println("Código generado: " + Variables.Color.MAGENTA + codigo + Variables.Fuente.RESET);
+    static void pagoefectivo(){
+
+        codigoPago = generarCodigoAlfanumerico(8);
+        System.out.println("Código generado: " + Variables.Color.MAGENTA + codigoPago + Variables.Fuente.RESET);
         Utilidades.esperar(500);
         System.out.print(".");
         Utilidades.esperar(500);
@@ -279,7 +283,7 @@ public class Comprar{
         System.out.print(".");
         Utilidades.esperar(500);
 
-        Utilidades.limpiarConsola();
+        //Utilidades.limpiarConsola();
 
         System.out.print("Procesando reserva.");
         Utilidades.esperar(500);
@@ -288,7 +292,7 @@ public class Comprar{
         System.out.print(".");
         Utilidades.esperar(500);
     
-        Utilidades.limpiarConsola();
+        //Utilidades.limpiarConsola();
 
         System.out.print(Variables.Color.VERDE + "RESERVA REALIZADA EXITOSAMENTE. VÁLIDA HASTA 20 min PREVIO AL INICIO DEL SHOW. " + Variables.Fuente.RESET);
 

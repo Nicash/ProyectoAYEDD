@@ -32,7 +32,7 @@ public class esperar {
 
     }
 
-        public static void borrarLinea() {
+    public static void borrarLinea() {
 
             System.out.print("\033[1A");
 
