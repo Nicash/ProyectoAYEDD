@@ -208,6 +208,7 @@ public class Cliente{
                      
                 System.out.println(Variables.Fuente.SUBRAYADO + "Nombre:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].nombre);        
                 System.out.println(Variables.Fuente.SUBRAYADO + "Apellido:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].apellido);
+                System.out.println(Variables.Fuente.SUBRAYADO + "DNI:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].dni);
                 System.out.println(Variables.Fuente.SUBRAYADO + "eMail:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].email);
                 System.out.println(Variables.Fuente.SUBRAYADO + "Teléfono:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[indice].telefono);
                 System.out.println("");
