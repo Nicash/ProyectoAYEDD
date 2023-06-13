@@ -35,7 +35,8 @@ public class Administracion {
         }
         }
        if (intentos>=3) {
-            System.out.println("Has excedido el número máximo de intentos.");
+            System.out.println("");
+            System.out.println(Variables.Color.ROJO + "Has excedido el número máximo de intentos." + Variables.Color.RESET);
             intentos = 0;
        }
 
