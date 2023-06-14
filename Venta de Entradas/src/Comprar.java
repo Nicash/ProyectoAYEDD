@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.text.SimpleDateFormat;
 
 
@@ -34,11 +35,20 @@ public class Comprar{
 
         do { //Este bucle se va a repetir hasta que el usuario ingrese un numero valido (no negativo, ni mayor al numero de entradas disponibles)
             
-            System.out.print("Ingrese la cantidad de entradas que desea comprar: "); //Preguntamos la cantidad de entradas a comprar. El usuario debe ingresar la cantidad.
-
-            cantidadEntradasComprar = Utilidades.lector.nextInt();
-
-            Utilidades.lector.nextLine(); //Salto de linea para q no me de error luego al leer el String
+        
+        boolean entradasValido = false;
+        while(!entradasValido){
+            try{
+                System.out.print("Ingrese la cantidad de entradas que desea comprar: "); //Preguntamos la cantidad de entradas a comprar. El usuario debe ingresar la cantidad.
+                cantidadEntradasComprar = Utilidades.lector.nextInt();
+                Utilidades.lector.nextLine();
+                entradasValido = true;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Ha ingresado un valor incorrecto. Intente nuevamente, por favor.");
+                Utilidades.lector.nextLine();
+            }
+        }
 
             if (cantidadEntradasComprar > Variables.cantidadEntradasDisponibles) { //Comprobamos que el numero ingresado no sea mayor al numero de entradas disponibles
 
@@ -65,25 +75,46 @@ public class Comprar{
                 Estadio.dibujarEstadio();
 
                 System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (i + 1) + ":" + Variables.Fuente.RESET);
-                System.out.print("Introduzca n° de FILA: ");
 
-                pick_fila = Utilidades.lector.nextInt() - 1;
-                Utilidades.lector.nextLine();
+                boolean validoFila = false;
+                pick_fila = -1;
+                while(!validoFila){
+                    try{
+                        System.out.print("Introduzca n° de FILA: ");
+                        pick_fila = Utilidades.lector.nextInt() - 1;
+                        Utilidades.lector.nextLine();
+                        validoFila = true;
+                    }
+                    catch(InputMismatchException e){
+                        System.out.println("Ha ingresado un valor incorrecto. Intente nuevamente, por favor.");
+                        Utilidades.lector.nextLine();
+                    }
+                }
         
                 if (pick_fila < 0 || pick_fila >= Estadio.estadio.length) {
 
                     System.out.println("Has elegido una fila inexistente, por favor inténtalo de nuevo. Presione 'Enter' para continuar...");
                     Utilidades.lector.nextLine();
                 }
-
+                
             } while (pick_fila < 0 || pick_fila >= Estadio.estadio.length); //El bucle se repite hasta que el usuario ingrese un numero de Fila correcto, es decir: no negativo, ni mayor a la capacidad del estadio.
         
             do {
 
-                System.out.print("Introduzca n° de COLUMNA: ");
-
-                pick_columna = Utilidades.lector.nextInt() - 1;
-                Utilidades.lector.nextLine();
+                boolean validoColumna = false;
+                pick_columna = -1;
+                while(!validoColumna){
+                    try{
+                        System.out.print("Introduzca n° de COLUMNA: ");
+                        pick_columna = Utilidades.lector.nextInt() - 1;
+                        Utilidades.lector.nextLine();
+                        validoColumna = true;
+                    }
+                    catch(InputMismatchException e){      
+                        System.out.println("Ha ingresado un valor incorrecto. Intente nuevamente, por favor.");
+                        Utilidades.lector.nextLine();
+                    }
+                }
         
                 if (pick_columna < 0 || pick_columna >= Estadio.estadio[pick_fila].length) {
 
