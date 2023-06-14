@@ -13,7 +13,8 @@ public class Variables {
     public static int cantidadDineroRecaudado = 0; //La cantidad total de dinero recaudado.
 
     public static Cliente arrayClientes[] = new Cliente[100]; //Inicializamos un arreglo del tipo Cliente con 100 posiciones, que va a tener todos los datos de los clientes con las entradas que compraron
-
+    public static boolean volverAlMenu = false;
+    
     //Variables de Color
 
     public static class Color { 

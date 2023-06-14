@@ -1,4 +1,7 @@
 import java.util.Random;
+
+import javax.sound.sampled.SourceDataLine;
+
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.text.SimpleDateFormat;
@@ -23,21 +26,51 @@ public class Comprar{
         String dniCompra = Utilidades.lector.nextLine();
 
         if(!Cliente.existeCliente(dniCompra)){ //Llamamos al metodo que checkea mediante el DNI si el Cliente existe
-            System.out.println("No tienes cuenta creada. Vamos a crearte una."); 
-            System.out.println("+ Ingresa tus datos:");
-            Cliente.crearCuenta(dniCompra); //En caso de que no exista vamos a llamar al metodo que crea una cuenta llevando ya como parametro el DNI
-        }
-        
-        Utilidades.limpiarConsola(); //Limpiamos la consola
-        Estadio.dibujarEstadio(); //Antes de elegir cuantas entradas quiere comprar dibujamos el estadio y mostramos la cantidad disponible
-        
-        System.out.println("¡Bienvenido, " + Variables.Color.MAGENTA + Cliente.getNameByDNI(dniCompra) + Variables.Color.RESET + "!"); //Saludamos con el nombre invocando un metodo para obtener el nombre del usuario mediante el DNI
+            System.out.println("No tienes cuenta creada. ¿Deseas crearte una?");
+            String deseaCrear = "";
 
-        do { //Este bucle se va a repetir hasta que el usuario ingrese un numero valido (no negativo, ni mayor al numero de entradas disponibles)
+            do{
+            System.out.println("[1] Crear Cuenta | [2] Volver al Menú");
+            System.out.print("Opción: ");
+            deseaCrear = Utilidades.lector.nextLine();
+           
+            if(deseaCrear.equals("1")){}
+            else if(deseaCrear.equals("2")){
+            }
+            else{
+                System.out.println("Opción incorrecta. Vuelva a intentarlo.");
+            }
+
+            }while(!deseaCrear.equals("1") && !deseaCrear.equals("2"));
+
+            if(deseaCrear.equals("1")){
+                Utilidades.limpiarConsola();
+
+                System.out.println(Variables.Color.CYAN);
+                System.out.println("-------------------------------------------------------------");
+                System.out.println("                       CREANDO USUARIO                       ");
+                System.out.println("-------------------------------------------------------------");
+                System.out.println(Variables.Color.RESET);
+                System.out.println("+ Ingresa tus datos:");
+
+                Cliente.crearCuenta(dniCompra); //En caso de que no exista vamos a llamar al metodo que crea una cuenta llevando ya como parametro el DNI
+            }
+            else{
+                Variables.volverAlMenu = true;
+            }
+        }
+
+        if(Variables.volverAlMenu == false){
+            Utilidades.limpiarConsola(); //Limpiamos la consola
+            Estadio.dibujarEstadio(); //Antes de elegir cuantas entradas quiere comprar dibujamos el estadio y mostramos la cantidad disponible
+        
+            System.out.println("¡Bienvenido, " + Variables.Color.MAGENTA + Cliente.getNameByDNI(dniCompra) + Variables.Color.RESET + "!"); //Saludamos con el nombre invocando un metodo para obtener el nombre del usuario mediante el DNI
+
+            do { //Este bucle se va a repetir hasta que el usuario ingrese un numero valido (no negativo, ni mayor al numero de entradas disponibles)
             
         
-        boolean entradasValido = false;
-        while(!entradasValido){
+            boolean entradasValido = false;
+            while(!entradasValido){
             try{
                 System.out.print("Ingrese la cantidad de entradas que desea comprar: "); //Preguntamos la cantidad de entradas a comprar. El usuario debe ingresar la cantidad.
                 cantidadEntradasComprar = Utilidades.lector.nextInt();
@@ -48,7 +81,7 @@ public class Comprar{
                 System.out.println("Ha ingresado un valor incorrecto. Intente nuevamente, por favor.");
                 Utilidades.lector.nextLine();
             }
-        }
+            }
 
             if (cantidadEntradasComprar > Variables.cantidadEntradasDisponibles) { //Comprobamos que el numero ingresado no sea mayor al numero de entradas disponibles
 
@@ -59,15 +92,15 @@ public class Comprar{
                 System.out.println("La cantidad ingresada es incorrecta, intentelo de nuevo.");
             }
         
-    } while (cantidadEntradasComprar <= 0 || cantidadEntradasComprar > Variables.cantidadEntradasDisponibles); //condicion del bucle: seguira repitiendose si el numero ingresado es negativo o cero, o si es mayor al numero de entradas disponibles
+            } while (cantidadEntradasComprar <= 0 || cantidadEntradasComprar > Variables.cantidadEntradasDisponibles); //condicion del bucle: seguira repitiendose si el numero ingresado es negativo o cero, o si es mayor al numero de entradas disponibles
        
-    int[][] entradasCompradasArray = new int[cantidadEntradasComprar][2]; //Creamos un array para guardar las posiciones que elija en cada uno de los boletos que vaya a comprar
+            int[][] entradasCompradasArray = new int[cantidadEntradasComprar][2]; //Creamos un array para guardar las posiciones que elija en cada uno de los boletos que vaya a comprar
 
-        // Luego de elegir la cantidad le decimos que elija la posicion de las mismas.
+         // Luego de elegir la cantidad le decimos que elija la posicion de las mismas.
 
-        int pick_fila, pick_columna;
+            int pick_fila, pick_columna;
 
-        for (int i = 0; i < cantidadEntradasComprar; i ++) { //Bucle que recorre la cantidad de entradas a comprar
+            for (int i = 0; i < cantidadEntradasComprar; i ++) { //Bucle que recorre la cantidad de entradas a comprar
 
             //Para cada eleccion vamos a limpiar la consola y volver a dibujar el Estadio actualizado con las compras que se van ingresando
             do {
@@ -149,9 +182,9 @@ public class Comprar{
 
             }
             
-        }
-        System.out.println("Su selección se ha guardado correctamente:");
-        for(int j = 0; j < cantidadEntradasComprar; j++){
+            }
+            System.out.println("Su selección se ha guardado correctamente:");
+            for(int j = 0; j < cantidadEntradasComprar; j++){
 
             int posFila = entradasCompradasArray[j][0];
             int posColumna = entradasCompradasArray[j][1];
@@ -159,20 +192,20 @@ public class Comprar{
             System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (j + 1) + ":" + Variables.Fuente.RESET + " Fila " + (posFila+1) + " - Columna: " + (posColumna+1));
             
             Cliente.agregarBoleto(dniCompra,(posFila+1),(posColumna+1)); //con este Metodo agregamos las entradas una por una al array que posee cada usuario para tal fin
-        }
-        System.out.println(Variables.Fuente.SUBRAYADO + "Total a pagar:" + Variables.Fuente.RESET + Variables.Color.VERDE + " $" + cantidadEntradasComprar*Variables.precioEntrada + Variables.Color.RESET);
-        System.out.println(" ");
+            }
+            System.out.println(Variables.Fuente.SUBRAYADO + "Total a pagar:" + Variables.Fuente.RESET + Variables.Color.VERDE + " $" + cantidadEntradasComprar*Variables.precioEntrada + Variables.Color.RESET);
+            System.out.println(" ");
  
 
 
-        System.out.println(Variables.Fuente.SUBRAYADO + "Formas de pago:" + Variables.Fuente.RESET);
-        System.out.println("[1] PAGO CON TARJETA | [2] PAGO CON EFECTIVO");
+            System.out.println(Variables.Fuente.SUBRAYADO + "Formas de pago:" + Variables.Fuente.RESET);
+            System.out.println("[1] PAGO CON TARJETA | [2] PAGO CON EFECTIVO");
 
-        boolean condicion = false;
-        boolean comprobante = false;
-        do {
-        System.out.print("Elija un medio de pago: "); 
-        pago = Utilidades.lector.nextLine(); //El usuario debe ingresar el nro correspondiente a la opcion de pago
+            boolean condicion = false;
+            boolean comprobante = false;
+            do {
+            System.out.print("Elija un medio de pago: "); 
+            pago = Utilidades.lector.nextLine(); //El usuario debe ingresar el nro correspondiente a la opcion de pago
             switch(pago){
                 case "1":
                     Comprar.pagotarjeta(); //Llama al metodo especifico para la Compra con tarjeta
@@ -192,54 +225,55 @@ public class Comprar{
                     System.out.println("");
                     break;
             }
-        }while (!condicion);
+            }while (!condicion);
 
-        //Una vez terminado el bucle del total de entradas a comprar limpiamos la consola y generamos el comprobante con los datos de la compra
-        //Utilidades.limpiarConsola();
-        System.out.println("");
-        System.out.println("¡Muchas gracias por su compra!");
-        System.out.println("Comprobante enviado a: " + Cliente.getEmailByDNI(dniCompra)); 
+            //Una vez terminado el bucle del total de entradas a comprar limpiamos la consola y generamos el comprobante con los datos de la compra
+            //Utilidades.limpiarConsola();
+            System.out.println("");
+            System.out.println("¡Muchas gracias por su compra!");
+            System.out.println("Comprobante enviado a: " + Cliente.getEmailByDNI(dniCompra)); 
 
-        //IMPRIMIMOS EL COMPROBANTE DE COMPRA
-        Date fechaHoraActual = new Date(); //llamo a la clase Date para incluirla en el comprobante
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy HH:mm");
-        String fechaHoraFormateada = formato.format(fechaHoraActual);
+            //IMPRIMIMOS EL COMPROBANTE DE COMPRA
+            Date fechaHoraActual = new Date(); //llamo a la clase Date para incluirla en el comprobante
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yy HH:mm");
+            String fechaHoraFormateada = formato.format(fechaHoraActual);
         
 
-        System.out.println(Variables.Color.CYAN);
-        System.out.println("-----------------------------------");
-        System.out.println("       COMPROBANTE DE COMPRA       ");
-        System.out.println("-----------------------------------");
-        System.out.println("Fecha y Hora: " + fechaHoraFormateada);
-        System.out.println("Cliente: " + Cliente.getNameByDNI(dniCompra) + " " + Cliente.getApellidoByDNI(dniCompra));
-        System.out.println("DNI: " + dniCompra);
-        System.out.println("-----------------------------------");
+            System.out.println(Variables.Color.CYAN);
+            System.out.println("-----------------------------------");
+            System.out.println("       COMPROBANTE DE COMPRA       ");
+            System.out.println("-----------------------------------");
+            System.out.println("Fecha y Hora: " + fechaHoraFormateada);
+            System.out.println("Cliente: " + Cliente.getNameByDNI(dniCompra) + " " + Cliente.getApellidoByDNI(dniCompra));
+            System.out.println("DNI: " + dniCompra);
+            System.out.println("-----------------------------------");
 
-        for(int j = 0; j < cantidadEntradasComprar; j++){
+            for(int j = 0; j < cantidadEntradasComprar; j++){
 
             int posFila = entradasCompradasArray[j][0];
             int posColumna = entradasCompradasArray[j][1];
             
             System.out.println(Variables.Fuente.SUBRAYADO + "Boleto N°" + (j + 1) + ":" + Variables.Fuente.RESET + Variables.Color.CYAN + " Fila " + (posFila+1) + " - Columna: " + (posColumna+1));
             
-        }
+            }
         
-        System.out.println("-----------------------------------");
+            System.out.println("-----------------------------------");
         
-        if (comprobante){
+            if (comprobante){
             System.out.println("FORMA DE PAGO: "+ Variables.Color.VERDE + "TARJETA" + Variables.Color.RESET);
             System.out.println(Variables.Color.CYAN +"TOTAL: $" + cantidadEntradasComprar * Variables.precioEntrada); 
-        }else {
+            }else {
             System.out.println("FORMA DE PAGO: " + Variables.Color.VERDE + "EFECTIVO" + Variables.Color.RESET);
             System.out.println(Variables.Color.CYAN +"TOTAL: $" + cantidadEntradasComprar * Variables.precioEntrada);           
             System.out.println("");
             System.out.println(Variables.Color.CYAN + "CODIGO DE RESERVA: "+ Variables.Color.MAGENTA + codigoPago);
             System.out.println(Variables.Color.CYAN + "(RESERVA VALIDA HASTA 20 min \nPREVIO AL INICIO DEL SHOW)");
             
-        }
+            }
 
-        System.out.println("-----------------------------------" + Variables.Color.RESET);
-        System.out.println("");
+            System.out.println("-----------------------------------" + Variables.Color.RESET);
+            System.out.println("");
+        } //SI VOLVER AL MENU = TRUE NO PASA NADA DE LO ANTERIOR
     }
     
 

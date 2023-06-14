@@ -242,12 +242,12 @@ public class Cliente{
             
             System.out.print(Variables.Color.VERDE + "+ " + Variables.Fuente.SUBRAYADO + "Cliente:" + Variables.Fuente.RESET + " ");
             System.out.println(Variables.arrayClientes[pos].nombre + " " + Variables.arrayClientes[pos].apellido);
-            System.out.println(Variables.Color.VERDE + "+ " + Variables.Fuente.SUBRAYADO + "Entradas Compradas:" + Variables.Fuente.RESET + " ");
+            System.out.println(Variables.Color.VERDE + "+ " + Variables.Fuente.SUBRAYADO + "Entradas Compradas:" + Variables.Fuente.RESET + " " + Variables.arrayClientes[pos].contadorEntradas);
 
             for(int j = 0; j < Variables.arrayClientes[pos].entradasCompradas.length;j++){
 
                 if(Variables.arrayClientes[pos].entradasCompradas[j][0] != 0){
-                        System.out.print("     " + Variables.Fuente.SUBRAYADO + "Boleto Nro " + (j+1) + ":" + Variables.Fuente.RESET);
+                        System.out.print("     " + Variables.Fuente.SUBRAYADO + "Boleto Nro " + (j+1) + Variables.Fuente.RESET + ": ");
                         System.out.println(" Fila: " + Variables.arrayClientes[pos].entradasCompradas[j][0] + " - Columna: " + Variables.arrayClientes[pos].entradasCompradas[j][1]);
                 }
 

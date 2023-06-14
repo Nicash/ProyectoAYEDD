@@ -32,9 +32,13 @@ public  class Menu{
             
                     Utilidades.limpiarConsola(); //Limpiamos la consola
                     Comprar.compraEntradas(); //Llama al metodo especifico para la Compra de Entradas
+                    if(Variables.volverAlMenu == false){
                     System.out.println("Presione 'Enter' para volver al menú..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
                     Utilidades.lector.nextLine();
-
+                    }
+                    else{
+                        Variables.volverAlMenu = false;
+                    }
                     break;
 
                 case "2":
