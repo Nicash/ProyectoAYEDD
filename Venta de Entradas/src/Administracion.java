@@ -35,8 +35,12 @@ public class Administracion {
         }
         }
        if (intentos>=3) {
-            System.out.println("Has excedido el número máximo de intentos.");
+            System.out.println("");
+            System.out.println(Variables.Color.ROJO + "Has excedido el número máximo de intentos." + Variables.Color.RESET);
+            System.out.println("Presione 'Enter' para volver al menú..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
+             
             intentos = 0;
+            Utilidades.lector.nextLine();
        }
 
    
