@@ -1,7 +1,4 @@
 import java.util.Random;
-
-import javax.sound.sampled.SourceDataLine;
-
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.text.SimpleDateFormat;
@@ -57,10 +54,17 @@ public class Comprar{
             }
             else{
                 Variables.volverAlMenu = true;
+                    System.out.print("Volviendo al menú");  //Mensaje que avisa que el programa se está cerrando
+                    Utilidades.esperar(250);
+                    System.out.print(".");
+                    Utilidades.esperar(250);
+                    System.out.print(".");
+                    Utilidades.esperar(250);
+                    System.out.print(".");
+                return;
             }
         }
 
-        if(Variables.volverAlMenu == false){
             Utilidades.limpiarConsola(); //Limpiamos la consola
             Estadio.dibujarEstadio(); //Antes de elegir cuantas entradas quiere comprar dibujamos el estadio y mostramos la cantidad disponible
         
@@ -273,7 +277,6 @@ public class Comprar{
 
             System.out.println("-----------------------------------" + Variables.Color.RESET);
             System.out.println("");
-        } //SI VOLVER AL MENU = TRUE NO PASA NADA DE LO ANTERIOR
     }
     
 
