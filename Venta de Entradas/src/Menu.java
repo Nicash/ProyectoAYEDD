@@ -31,7 +31,13 @@ public  class Menu{
                 case "1":
             
                     Utilidades.limpiarConsola(); //Limpiamos la consola
-                    Comprar.compraEntradas(); //Llama al metodo especifico para la Compra de Entradas
+                    if(Variables.cantidadEntradasDisponibles == 0){
+                        System.out.println(Variables.Color.ROJO+ "LAS ENTRADAS ESTAN AGOTADAS" + Variables.Color.RESET);
+                    }
+                    else{
+                        Comprar.compraEntradas(); //Llama al metodo especifico para la Compra de Entradas
+                    }
+
                     if(Variables.volverAlMenu == false){
                     System.out.println("Presione 'Enter' para volver al menú..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
                     Utilidades.lector.nextLine();
