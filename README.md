@@ -1,5 +1,13 @@
 # Proyecto para Algoritmos y Estructuras de Datos
 
+Integrantes del grupo de trabajo:
+- Carril, Nicolás
+- Chaves, Nicolás
+- Druetta, Emiliano
+- Espil Crespo, Lautaro
+- Gómez, Marcos
+- Valkovich, Gustavo
+
 ### Enunciado N° 4: Plataforma de Venta de Entradas para Concierto
 - Una empresa de entretenimiento desea implementar la venta de entradas en línea para un concierto.
 - El número de entradas disponibles es limitado y se desea evitar la sobreventa.
