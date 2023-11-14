@@ -1,0 +1,27 @@
+[
+  {
+    "apellido": "Chaves",
+    "contadorEntradas": 2,
+    "entradasCompradas": [
+      [1, 1],
+      [1, 2]
+    ],
+    "telefono": "1234567890",
+    "nombre": "Nicolas",
+    "dni": "33469835",
+    "email": "nico@gmail.com"
+  },
+  {
+    "apellido": "Chaves",
+    "contadorEntradas": 3,
+    "entradasCompradas": [
+      [10, 1],
+      [10, 2],
+      [10, 3]
+    ],
+    "telefono": "0123456789",
+    "nombre": "Ruben",
+    "dni": "12984666",
+    "email": "ruben@gmail.com"
+  }
+]

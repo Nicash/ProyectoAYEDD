@@ -5,7 +5,7 @@ import java.util.Random; //Utilidad para generar numeros aleatorios
 public class Estadio {
     
     //VARIABLES DEL ESTADIO
-    public static final int ASIENTOSRANDOMOCUPADOS = 20; //Cantidad aleatoria de asientos para simular compras anteriores
+    public static final int ASIENTOSRANDOMOCUPADOS = 10; //Cantidad aleatoria de asientos para simular compras anteriores
     public static final int FILAS = 10; //Cantidad de Filas del diagrama de asientos
     public static final int COLUMNAS = 10; //Cantidad de Columnas del diagrama de asientos
     public static String[][] estadio = new String[FILAS][COLUMNAS];  //Array de las ubicaciones del estadio

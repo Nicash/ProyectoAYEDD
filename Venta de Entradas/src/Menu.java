@@ -70,6 +70,9 @@ public  class Menu{
                     break;
         
                 case "5":
+
+                    Archivo.guardarClientesJson(Variables.arrayClientes);//guardamos los clientes cargados
+
                     Utilidades.lector.close(); //Cerramos el lector antes de salir del programa
                     System.out.print("Saliendo");  //Mensaje que avisa que el programa se está cerrando
                     Utilidades.esperar(500);

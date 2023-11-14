@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Variables {
     
     public static final int cantidadInicialEntradas = 100;

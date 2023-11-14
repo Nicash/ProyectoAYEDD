@@ -97,6 +97,66 @@ public class Cliente{
         }
         return "error";
     }
+
+    //Metodo que devuelve el DNI del Usuario
+    public int getDNI() {
+        String dni = this.dni;
+        return Integer.parseInt(dni);
+    }
+
+    public String getDNIString() {
+        String dni = this.dni;
+        return dni;
+    }
+
+    //Metodo que devuelve el DNI del Usuario
+    public String getNombre() {
+        String nombre = this.nombre;
+        return nombre;
+    }
+
+    public String getApellido() {
+        String apellido = this.apellido;
+        return apellido;
+    }
+
+    public String getTelefono() {
+        String telefono = this.telefono;
+        return telefono;
+    }
+
+    public String getEmail() {
+        String email = this.email;
+        return email;
+    }
+
+    public int getContadorEntradas() {
+        int nro = this.contadorEntradas;
+        return nro;
+    }
+
+    public int[][] entradasCompradas(){
+
+        for(int j = 0; j < this.contadorEntradas;j++){
+                    if(this.entradasCompradas[j][0] != 0){
+                        entradasCompradas[j][0] = this.entradasCompradas[j][0];
+                        entradasCompradas[j][1] = this.entradasCompradas[j][1];
+                    }
+
+                }
+
+        return entradasCompradas;
+    }
+
+    public void guardarEntradasCompradas(int[][] recibo, int cantidad){
+
+        for(int j = 0; j < cantidad;j++){
+                    this.entradasCompradas[j][0] = recibo[j][0];
+                    this.entradasCompradas[j][1] = recibo[j][1];
+                    }
+        this.contadorEntradas = cantidad;
+    }
+    
     
     //Con este Metodo creamos una cuenta con los parametros que le proporcionemos al iniciar el programa, sirve para testear
     public static void crearCuentaAdmin(String dni, String nombre, String apellido, String email, String telefono) {

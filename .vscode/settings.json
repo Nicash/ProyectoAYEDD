@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Venta de Entradas/lib/JSON Simple/json-simple-1.1.1.jar"
+    ]
+}

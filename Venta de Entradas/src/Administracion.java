@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Administracion {
     
     public static void pedirContraseña(){
@@ -54,9 +56,9 @@ public class Administracion {
 
         System.out.println(Variables.Color.VERDE + "                         Administración                              " + Variables.Color.RESET);
 
-        System.out.println("---------------------------------------------------------------------");
-        System.out.println("  [1] Información de ventas | [2] Listado de clientes | [3] Salir ");
-        System.out.println("---------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------");
+        System.out.println("  [1] Información de ventas | [2] Listado de clientes | [3] Ordenamiento | [4] Salir   ");
+        System.out.println("---------------------------------------------------------------------------------------");
         System.out.println("");
         
         System.out.print("- Elige una opción: ");
@@ -97,8 +99,32 @@ public class Administracion {
                 Utilidades.lector.nextLine();
                 Utilidades.limpiarConsola();
             break;
-            
+
             case "3":
+            Utilidades.limpiarConsola();
+            ArrayList<Cliente> lista = new ArrayList<>();
+            lista = Ordenamiento.ordenarLista(Variables.arrayClientes);
+            
+            System.out.println("------------------------------");
+            System.out.println("  Clientes ordenados por DNI  ");
+            System.out.println("------------------------------");
+
+            for (Cliente cliente : lista){
+                
+                System.out.println("");
+                System.out.println("Nombre: " + cliente.getNombre() + " " + cliente.getApellido());
+                System.out.println("DNI: " + cliente.getDNI());
+                
+            }
+
+            System.out.println("");
+            System.out.println("Presione 'Enter' para volver al menú..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu
+            Utilidades.lector.nextLine();
+            Utilidades.limpiarConsola();
+
+            break;
+
+            case "4":
             System.out.println("");
             System.out.print("Saliendo.");
             Utilidades.esperar(500);
@@ -108,7 +134,7 @@ public class Administracion {
             Utilidades.esperar(500);
             menuA = false;
             break;
-            
+
             default:
             
             System.out.println("Opción inválida. Por favor, elige nuevamente. Presione 'Enter' para continuar...");  //Cada vez que se ponga una opcion invalida se avisa y se vuelve a la eleccion de opcion
