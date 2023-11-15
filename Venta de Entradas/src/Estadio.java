@@ -42,6 +42,32 @@ public class Estadio {
 
     }
 
+    public static void llenarLugaresOcupados() {
+        for(int i=0;i<Variables.arrayClientes.length;i++){
+            Cliente cliente = Variables.arrayClientes[i];
+            if(cliente == null){
+                break;
+            }
+            int cantidadEntradas = cliente.getContadorEntradas();
+
+            if(cantidadEntradas != 0){
+                int[][] entradasCompradas = cliente.getEntradasCompradas();
+
+                for(int j = 0; j<cantidadEntradas;j++){
+
+                    int posX = entradasCompradas[j][0];
+                    int posY = entradasCompradas[j][1];
+
+                    estadio[posX-1][posY-1] = "x";
+
+                }
+
+
+            }
+        }
+
+    }
+
     //METODO PARA DIBUJAR EL ESTADIO CON LAS POSICIONES OCUPADAS
     public static void dibujarEstadio(){
         

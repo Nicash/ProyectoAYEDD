@@ -135,6 +135,11 @@ public class Cliente{
         return nro;
     }
 
+    public int[][] getEntradasCompradas() {
+        int[][] entradas = this.entradasCompradas;
+        return entradas;
+    }
+
     public int[][] entradasCompradas(){
 
         for(int j = 0; j < this.contadorEntradas;j++){

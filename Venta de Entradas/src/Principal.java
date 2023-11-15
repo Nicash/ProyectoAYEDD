@@ -16,6 +16,7 @@ public class Principal{
         //Cliente.crearCuentaAdmin("444","Nicolas","Carril","nicolascarril@gmail.com","12345678910");
         
         Estadio.randomizarEstadio(); //damos lugares aleatorios al estadio para simular compras anteriores
+        Estadio.llenarLugaresOcupados();
         Menu.ejecutarMenu(); //llamamos al bucle del menu
 
     }
