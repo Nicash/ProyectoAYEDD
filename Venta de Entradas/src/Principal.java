@@ -4,9 +4,10 @@ public class Principal{
 
         // ARRANCAMOS CON LA SECUENCIA DEL PROGRAMA
         Cliente cargaArray[] = Archivo.cargarClientesJson();
-        if(cargaArray.length != 0){
-            Variables.arrayClientes = cargaArray;
+        for(int i=0;i<cargaArray.length;i++){
+            Variables.arrayClientes[i] = cargaArray[i];
         }
+        
 
         //Cliente.crearCuentaAdmin("33469835","Nicolás","Chaves","nicolas@gmail.com","12345678910"); //creamos un usuario para pruebas
         //Cliente.crearCuentaAdmin("36372460","Gustavo","Valkovich","gustavo@gmail.com","12345678910");

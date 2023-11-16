@@ -86,11 +86,13 @@ public class Administracion {
 
             case "2":
             Utilidades.limpiarConsola();
-            System.out.println("Clientes:");
+            System.out.println(Variables.Color.VERDE + "------------------------------------------------");
+            System.out.println("                    CLIENTES");
+            System.out.println("------------------------------------------------" + Variables.Color.RESET);
             System.out.println("");
             for ( int i=0 ; i<Variables.arrayClientes.length ; i++ ) {
                 if (Variables.arrayClientes[i] != null){
-                     System.out.println(Variables.Color.AZUL +"Cliente n°" + (i+1) + Variables.Color.RESET );
+                     System.out.println(Variables.Color.AZUL +"Cliente n° " + (i+1) + Variables.Color.RESET );
                     Cliente.imprimirDatos(i);
                 }
             }
@@ -105,17 +107,20 @@ public class Administracion {
             ArrayList<Cliente> lista = new ArrayList<>();
             lista = Ordenamiento.ordenarLista(Variables.arrayClientes);
             
-            System.out.println("------------------------------");
-            System.out.println("  Clientes ordenados por DNI  ");
-            System.out.println("------------------------------");
-
+            System.out.println(Variables.Color.VERDE + "------------------------------------------------");
+            System.out.println("                    CLIENTES");
+            System.out.println("------------------------------------------------" + Variables.Color.RESET);
+            
+            int contador = 1;
             for (Cliente cliente : lista){
                 
                 System.out.println("");
+                System.out.println(Variables.Color.AZUL +"Posicion n° " + contador + Variables.Color.RESET );
                 System.out.println("Nombre: " + cliente.getNombre() + " " + cliente.getApellido());
                 System.out.println("DNI: " + cliente.getDNI());
-                
+                contador++;
             }
+            contador = 0;
 
             System.out.println("");
             System.out.println("Presione 'Enter' para volver al menú..."); //Una vez terminado todo lo anterior esperamos que el usuario presione Enter para volver al menu

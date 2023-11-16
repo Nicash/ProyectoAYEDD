@@ -24,7 +24,6 @@ public class Archivo {
                 clienteJson.put("telefono", cliente.getTelefono());
                 clienteJson.put("email", cliente.getEmail());
 
-                // Incluir las variables adicionales
                 JSONArray entradasCompradasJson = new JSONArray();
                 for (int[] entrada : cliente.entradasCompradas()) {
                     if(entrada[0] != 0){
@@ -79,6 +78,7 @@ public class Archivo {
                     JSONArray entradaJson = (JSONArray) entradasCompradasJson.get(j);
                     entradasCompradas[j][0] = Integer.parseInt(entradaJson.get(0).toString());
                     entradasCompradas[j][1] = Integer.parseInt(entradaJson.get(1).toString());
+                    Variables.cantidadEntradasDisponibles--;
                 }
 
 
